@@ -1,12 +1,42 @@
-<!-- hotel-list.component.html -->
 <p>hotel-list works!</p>
 <div *ngIf="hotels.length; else noHotels">
   <ul>
     <li *ngFor="let hotel of hotels">
-      <p>Hotel Name : {{ hotel.HotelName }}</p>
-      <p>Hotel City : {{ hotel.HotelAddress.City }}</p>
-      <p>Hotel Country : {{ hotel.HotelAddress.Country }}</p>
-      <p>Hotel Rating : {{ hotel.HotelRating }}</p>
+      <p>Hotel Name: {{ hotel.HotelName }}</p>
+      <p>Hotel City: {{ hotel.HotelAddress.City }}</p>
+      <p>Hotel Country: {{ hotel.HotelAddress.Country }}</p>
+      <p>Hotel Rating: {{ hotel.HotelRating }}</p>
+      <p *ngIf="hotel.HotelDescription">
+        Hotel Details: {{ hotel.HotelDescription.Description }}
+      </p>
+      <p *ngIf="hotel.HotelAmenities">
+        Pool: {{ hotel.HotelAmenities.Pool ? "Yes" : "No" }}
+      </p>
+      <p *ngIf="hotel.HotelAmenities">
+        Gym: {{ hotel.HotelAmenities.Gym ? "Yes" : "No" }}
+      </p>
+      <p *ngIf="hotel.HotelAmenities">
+        Airport Shuttle:
+        {{ hotel.HotelAmenities.AirportShuttle ? "Yes" : "No" }}
+      </p>
+      <p *ngIf="hotel.HotelAmenities">
+        Pets: {{ hotel.HotelAmenities.Pets ? "Yes" : "No" }}
+      </p>
+      <div
+        *ngIf="
+          hotel.HotelDescription && hotel.HotelDescription.Images.length > 0
+        "
+      >
+      <p>Hotel Images:</p>
+      <div *ngFor="let image of hotel.HotelDescription.Images; let i = index">
+        <img
+          [src]="image"
+          alt="Hotel Image {{ i + 1 }}"
+          style="width: 100px; height: 100px"
+        />
+      </div>
+      
+      </div>
     </li>
   </ul>
 </div>

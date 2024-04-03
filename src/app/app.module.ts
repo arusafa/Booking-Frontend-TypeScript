@@ -11,6 +11,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ReactiveFormsModule } from "@angular/forms";
 import { HotelListComponent } from "./HOTEL/hotel-list/hotel-list.component";
 import { AddHotelComponent } from './HOTEL/add-hotel/add-hotel.component';
+import { UpdateHotelComponent } from './HOTEL/update-hotel/update-hotel.component';
 
 // Define application routes here
 const appRoutes: Routes = [
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
     SignupComponent,
     HotelListComponent,
     AddHotelComponent,
+    UpdateHotelComponent,
   ],
   imports: [
     BrowserModule,

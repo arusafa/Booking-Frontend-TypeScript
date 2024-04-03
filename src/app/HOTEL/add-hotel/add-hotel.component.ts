@@ -33,15 +33,23 @@ export class AddHotelComponent {
   };
   rooms: string[] = [];
 
-  constructor(private hotelService: HotelService, private router: Router) { }
+  constructor(private hotelService: HotelService, private router: Router) { 
+    this.hotelDescription.Images.push(''); // Add an empty image URL to the array
+  }
+  addImageField(): void {
+    this.hotelDescription.Images.push('');
+  }
+  removeImageField(index: number): void {
+    this.hotelDescription.Images.splice(index, 1);
+  }
 
   onSubmit(): void {
     // Convert amenities to Boolean values
     const hotelAmenitiesBoolean = {
-      Pool: this.hotelAmenities.Pool === "Yes" || "No",
-      Gym: this.hotelAmenities.Gym === "Yes" || "No",
-      AirportShuttle: this.hotelAmenities.AirportShuttle === "Yes" || "No",
-      Pets: this.hotelAmenities.Pets === "Yes" || "No",
+      Pool: this.hotelAmenities.Pool === "Yes",
+      Gym: this.hotelAmenities.Gym === "Yes",
+      AirportShuttle: this.hotelAmenities.AirportShuttle === "Yes",
+      Pets: this.hotelAmenities.Pets === "Yes",
     };
   
     const hotelData = {

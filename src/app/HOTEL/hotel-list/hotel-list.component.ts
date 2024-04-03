@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HotelService } from '../../services/hotel.service';
 
+
 @Component({
   selector: 'app-hotel-list',
   templateUrl: './hotel-list.component.html',
@@ -20,6 +21,7 @@ export class HotelListComponent implements OnInit {
     this.hotelService.getAllHotels().subscribe(
       data => {
         this.hotels = data;
+        console.log('Data:', data);
       },
       error => {
         console.log('Error occurred while fetching hotel data:', error);
