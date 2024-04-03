@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HotelService } from '../hotel-services/hotel.service';
-
-
 @Component({
   selector: 'app-hotel-list',
   templateUrl: './hotel-list.component.html',

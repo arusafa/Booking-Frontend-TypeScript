@@ -1,0 +1,42 @@
+<p>room-list works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Room List</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Room ID</th>
+            <th>Room Name</th>
+            <th>NumBeds</th>
+            <th>BedType</th>
+            <th>Square Feet</th>
+            <th>Amenities</th>
+            <th>Price</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let option of rooms">
+            <td>{{ option.roomId }}</td>
+            <td>{{ option.RoomName }}</td>
+            <td>
+              {{ option.NumberOfBeds }}
+            </td>
+            <td>{{ option.BedType }}</td>
+            <td>{{ option.SquareFeet }}</td>
+            <td>
+              {{ option.RoomAmenities }}
+            </td>
+
+            <td>{{ option.Price }}</td>
+            <td>
+              <button class="btn btn-primary">Edit</button>
+              <button class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
