@@ -1,0 +1,12 @@
+<p>hotel-list works!</p>
+<div *ngIf="hotels.length; else noHotels">
+    <ul>
+      <li *ngFor="let hotel of hotels">
+        {{ hotel.HotelName }} - {{ hotel.HotelAddress.City }}, {{ hotel.HotelAddress.Country }}
+      </li>
+    </ul>
+  </div>
+  <ng-template #noHotels>
+    <p>No hotels found.</p>
+  </ng-template>
+  

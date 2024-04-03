@@ -33,7 +33,9 @@ export class DashboardComponent {
       console.log("No user data found in localStorage");
     }
   }
-  
+  onHotelListClick() {
+    this.router.navigate(["/hotel-list"]);
+  }
 
   onLogoutClick() {
     this.authService.logout();

@@ -1,0 +1,29 @@
+import { Component, OnInit } from '@angular/core';
+import { HotelService } from '../../services/hotel.service';
+
+@Component({
+  selector: 'app-hotel-list',
+  templateUrl: './hotel-list.component.html',
+  styleUrls: ['./hotel-list.component.css']
+})
+export class HotelListComponent implements OnInit {
+
+  hotels: any[] = [];
+
+  constructor(private hotelService: HotelService) { }
+
+  ngOnInit(): void {
+    this.fetchHotels();
+  }
+
+  fetchHotels(): void {
+    this.hotelService.getAllHotels().subscribe(
+      data => {
+        this.hotels = data;
+      },
+      error => {
+        console.log('Error occurred while fetching hotel data:', error);
+      }
+    );
+  }
+}
