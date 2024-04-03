@@ -7,7 +7,7 @@ import { Router } from "@angular/router";
   providedIn: "root",
 })
 export class AuthService {
-  private apiUrl = "https://booking-backend-seven.vercel.app/auth";
+  private apiUrl = "http://localhost:3001/auth";
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -35,36 +35,42 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return !!localStorage.getItem('token');
+    return !!localStorage.getItem("token");
   }
 
   logout() {
     localStorage.removeItem("token");
+    localStorage.removeItem("role"); // Remove role on logout
     // Optionally clear other user data from local storage or cookies if stored
     this.router.navigate(["/login"]);
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return localStorage.getItem("token");
   }
 
   getRole(): string | null {
-    return localStorage.getItem('role');
+    return localStorage.getItem("role");
   }
 
   // New method to set the token
   setToken(token: string): void {
-    localStorage.setItem('token', token);
+    localStorage.setItem("token", token);
   }
 
   // New method to set the role
   setRole(role: string): void {
-    localStorage.setItem('role', role);
+    localStorage.setItem("role", role);
   }
 
   // Optionally, if you decide to store user details as a JSON string
   getUserDetails(): any {
-    const userDetails = localStorage.getItem('user');
+    const userDetails = localStorage.getItem("user");
     return userDetails ? JSON.parse(userDetails) : null;
+  }
+
+  // New method to check if the user is an admin
+  isAdmin(): boolean {
+    return this.getRole() === "admin";
   }
 }

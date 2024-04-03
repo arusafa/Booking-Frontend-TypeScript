@@ -1,0 +1,217 @@
+<div class="container">
+  <h2 class="mb-3">Add Hotel</h2>
+  <form (ngSubmit)="onSubmit()">
+    <!-- Hotel Name -->
+    <div class="form-group">
+      <label for="hotelName">Hotel Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="hotelName"
+        [(ngModel)]="hotelName"
+        name="hotelName"
+      />
+    </div>
+
+    <!-- Location Section -->
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="country">Country</label>
+        <input
+          type="text"
+          class="form-control"
+          id="country"
+          [(ngModel)]="hotelAddress.Country"
+          name="country"
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="city">City</label>
+        <input
+          type="text"
+          class="form-control"
+          id="city"
+          [(ngModel)]="hotelAddress.City"
+          name="city"
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="province">Province</label>
+        <input
+          type="text"
+          class="form-control"
+          id="province"
+          [(ngModel)]="hotelAddress.Province"
+          name="province"
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="postalCode">Postal Code</label>
+        <input
+          type="text"
+          class="form-control"
+          id="postalCode"
+          [(ngModel)]="hotelAddress.PostalCode"
+          name="postalCode"
+        />
+      </div>
+    </div>
+
+    <!-- Hotel Rating -->
+    <div class="form-group">
+      <label for="hotelRating">Hotel Rating</label>
+      <input
+        type="number"
+        class="form-control"
+        id="hotelRating"
+        [(ngModel)]="hotelRating"
+        name="hotelRating"
+      />
+    </div>
+
+    <!-- Amenities Section with Select Options -->
+    <div class="form-group">
+      <label for="amenities">Amenities</label>
+      <div class="form-row">
+        <div class="col-md-3">
+          <select
+            title="Pool"
+            class="form-control"
+            id="pool"
+            [(ngModel)]="hotelAmenities.Pool"
+            name="pool"
+          >
+            <option value="">Pool</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <select
+            title="Gym"
+            class="form-control"
+            id="gym"
+            [(ngModel)]="hotelAmenities.Gym"
+            name="gym"
+          >
+            <option value="">Gym</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <select
+            class="form-control"
+            title="Airport Shuttle"
+            id="airportShuttle"
+            [(ngModel)]="hotelAmenities.AirportShuttle"
+            name="airportShuttle"
+          >
+            <option value="">Airport Shuttle</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <select
+            title="Pets"
+            class="form-control"
+            id="pets"
+            [(ngModel)]="hotelAmenities.Pets"
+            name="pets"
+          >
+            <option value="">Pets</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        rows="3"
+        [(ngModel)]="hotelDescription.Description"
+        name="description"
+      ></textarea>
+    </div>
+
+    <!-- Image Uploads -->
+    <div class="form-group">
+      <label>Image URLs</label>
+      <div class="form-row">
+        <div class="col-md-4">
+          <input
+            type="text"
+            class="form-control"
+            id="image1Url"
+            name="image1Url"
+            placeholder="Enter Image 1 URL"
+          />
+        </div>
+        <div class="col-md-4">
+          <input
+            type="text"
+            class="form-control"
+            id="image2Url"
+            name="image2Url"
+            placeholder="Enter Image 2 URL"
+          />
+        </div>
+        <div class="col-md-4">
+          <input
+            type="text"
+            class="form-control"
+            id="image3Url"
+            name="image3Url"
+            placeholder="Enter Image 3 URL"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Distance Information -->
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="airportDistance">Airport Distance</label>
+        <input
+          type="text"
+          class="form-control"
+          id="airportDistance"
+          [(ngModel)]="hotelDetails.AirportDistance"
+          name="airportDistance"
+        />
+      </div>
+      <div class="form-group col-md-4">
+        <label for="downtownDistance">Downtown Distance</label>
+        <input
+          type="text"
+          class="form-control"
+          id="downtownDistance"
+          [(ngModel)]="hotelDetails.DowntownDistance"
+          name="downtownDistance"
+        />
+      </div>
+      <div class="form-group col-md-4">
+        <label for="seaDistance">Sea Distance</label>
+        <input
+          type="text"
+          class="form-control"
+          id="seaDistance"
+          [(ngModel)]="hotelDetails.SeaDistance"
+          name="seaDistance"
+        />
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

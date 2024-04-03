@@ -10,12 +10,14 @@ import { AppRoutingModule } from "./routes/app-routing.module";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ReactiveFormsModule } from "@angular/forms";
 import { HotelListComponent } from "./HOTEL/hotel-list/hotel-list.component";
+import { AddHotelComponent } from './HOTEL/add-hotel/add-hotel.component';
 
 // Define application routes here
 const appRoutes: Routes = [
   { path: "signup", component: SignupComponent },
   { path: "login", component: LoginComponent },
   { path: "hotel-list", component: HotelListComponent },
+  { path: "add-hotel", component: AddHotelComponent },
   { path: "**", redirectTo: "/login", pathMatch: "full" },
 ];
 
@@ -25,6 +27,7 @@ const appRoutes: Routes = [
     LoginComponent,
     SignupComponent,
     HotelListComponent,
+    AddHotelComponent,
   ],
   imports: [
     BrowserModule,

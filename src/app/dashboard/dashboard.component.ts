@@ -36,6 +36,9 @@ export class DashboardComponent {
   onHotelListClick() {
     this.router.navigate(["/hotel-list"]);
   }
+  onHotelCreateClick() {
+    this.router.navigate(["/add-hotel"]);
+  }
 
   onLogoutClick() {
     this.authService.logout();
