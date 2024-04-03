@@ -16,6 +16,7 @@ import { AuthGuard } from "./ADMIN/guard/auth.guard";
 import { AdminAuthGuardService } from "./ADMIN/admin-guard/admin-auth-guard.service";
 import { AddRoomComponent } from './ROOM/add-room/add-room.component';
 import { RoomListComponent } from './ROOM/room-list/room-list.component';
+import { AddRoomToHotelComponent } from './HOTEL/add-room-to-hotel/add-room-to-hotel.component';
 
 // Define application routes here
 const appRoutes: Routes = [
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "add-hotel", component: AddHotelComponent, canActivate: [AdminAuthGuardService] },
   { path: "add-room", component: AddRoomComponent, canActivate: [AdminAuthGuardService] },
+  {path:"add-room/:hotelId", component: AddRoomComponent, canActivate: [AdminAuthGuardService]},
   { path: "hotel-list", component: HotelListComponent, canActivate: [AuthGuard] },
   { path: "room-list", component: RoomListComponent, canActivate: [AuthGuard] },
   { path: "**", redirectTo: "/login", pathMatch: "full" },
@@ -38,6 +40,7 @@ const appRoutes: Routes = [
     UpdateHotelComponent,
     AddRoomComponent,
     RoomListComponent,
+    AddRoomToHotelComponent,
   ],
   imports: [
     BrowserModule,

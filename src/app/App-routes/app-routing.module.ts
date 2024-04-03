@@ -22,6 +22,7 @@ const routes: Routes = [
   },
   { path: "add-hotel", component: AddHotelComponent, canActivate: [AdminAuthGuardService] },
   { path: "add-room", component: AddRoomComponent, canActivate: [AdminAuthGuardService] },
+  {path:"add-room/:hotelId", component: AddRoomComponent, canActivate: [AdminAuthGuardService]},
   { path: "hotel-list", component: HotelListComponent, canActivate: [AuthGuard] },
   { path: "room-list", component: RoomListComponent, canActivate: [AuthGuard] },
   { path: "**", redirectTo: "/login", pathMatch: "full"}

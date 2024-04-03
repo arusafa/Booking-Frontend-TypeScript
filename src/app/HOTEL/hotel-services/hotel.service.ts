@@ -26,6 +26,18 @@ export class HotelService {
 
     return this.http.post(`${this.baseUrl}/newHotel`, hotel, { headers });
   }
+  
+  addRoomToHotel(room: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error("Token not available");
+    }
+
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`);
+
+    return this.http.post(`${this.baseUrl}/:hotelId/addRoom`, room, { headers });
+  }
 
   // More methods as needed for other operations like getHotelById, updateHotel, etc.
 }
