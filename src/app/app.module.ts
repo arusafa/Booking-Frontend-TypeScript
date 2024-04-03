@@ -6,19 +6,21 @@ import { LoginComponent } from "./login/login.component";
 import { SignupComponent } from "./signup/signup.component";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
-import { AppRoutingModule } from "./routes/app-routing.module";
+import { AppRoutingModule } from "./App-routes/app-routing.module";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ReactiveFormsModule } from "@angular/forms";
 import { HotelListComponent } from "./HOTEL/hotel-list/hotel-list.component";
 import { AddHotelComponent } from './HOTEL/add-hotel/add-hotel.component';
 import { UpdateHotelComponent } from './HOTEL/update-hotel/update-hotel.component';
+import { AuthGuard } from "./ADMIN/guard/auth.guard";
+import { AdminAuthGuardService } from "./ADMIN/admin-guard/admin-auth-guard.service";
 
 // Define application routes here
 const appRoutes: Routes = [
   { path: "signup", component: SignupComponent },
   { path: "login", component: LoginComponent },
-  { path: "hotel-list", component: HotelListComponent },
-  { path: "add-hotel", component: AddHotelComponent },
+  { path: "hotel-list", component: HotelListComponent, canActivate: [AdminAuthGuardService] },
+  { path: "add-hotel", component: AddHotelComponent, canActivate: [AdminAuthGuardService] },
   { path: "**", redirectTo: "/login", pathMatch: "full" },
 ];
 

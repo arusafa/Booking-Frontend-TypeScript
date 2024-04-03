@@ -12,6 +12,7 @@
         required
       />
     </div>
+<!-- Hotel Address -->
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="country">Country</label>
@@ -60,6 +61,7 @@
         />
       </div>
     </div>
+<!-- Hotel Rating -->
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="hotelRating">Hotel Rating</label>
@@ -73,52 +75,59 @@
         />
       </div>
     </div>
-    <div class="form-row">
-      <div class="form-group col-md-3">
-        <label for="pool">Pool</label>
-        <input
-          type="text"
-          class="form-control"
-          id="pool"
-          [(ngModel)]="hotelAmenities.Pool"
-          name="pool"
-          required
-        />
-      </div>
-      <div class="form-group col-md-3">
-        <label for="gym">Gym</label>
-        <input
-          type="text"
-          class="form-control"
-          id="gym"
-          [(ngModel)]="hotelAmenities.Gym"
-          name="gym"
-          required
-        />
-      </div>
-      <div class="form-group col-md-3">
-        <label for="airportShuttle">Airport Shuttle</label>
-        <input
-          type="text"
-          class="form-control"
-          id="airportShuttle"
-          [(ngModel)]="hotelAmenities.AirportShuttle"
-          name="airportShuttle"
-          required
-        />
-      </div>
-      <div class="form-group col-md-3">
-        <label for="pets">Pets</label>
-        <input
-          type="text"
-          class="form-control"
-          id="pets"
-          [(ngModel)]="hotelAmenities.Pets"
-          name="pets"
-          required
-        />
-      </div>
-    </div>
+<!-- Pool -->
+<div class="form-group col-md-3">
+  <label>Pool</label>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="pool" id="poolYes" [(ngModel)]="hotelAmenities.Pool" value="Yes" required>
+    <label class="form-check-label" for="poolYes">Yes</label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="pool" id="poolNo" [(ngModel)]="hotelAmenities.Pool" value="No" required>
+    <label class="form-check-label" for="poolNo">No</label>
+  </div>
+</div>
+
+<!-- Gym -->
+<div class="form-group col-md-3">
+  <label>Gym</label>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="gym" id="gymYes" [(ngModel)]="hotelAmenities.Gym" value="Yes" required>
+    <label class="form-check-label" for="gymYes">Yes</label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="gym" id="gymNo" [(ngModel)]="hotelAmenities.Gym" value="No" required>
+    <label class="form-check-label" for="gymNo">No</label>
+  </div>
+</div>
+
+<!-- Airport Shuttle -->
+<div class="form-group col-md-3">
+  <label>Airport Shuttle</label>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="airportShuttle" id="shuttleYes" [(ngModel)]="hotelAmenities.AirportShuttle" value="Yes" required>
+    <label class="form-check-label" for="shuttleYes">Yes</label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="airportShuttle" id="shuttleNo" [(ngModel)]="hotelAmenities.AirportShuttle" value="No" required>
+    <label class="form-check-label" for="shuttleNo">No</label>
+  </div>
+</div>
+
+<!-- Pets -->
+<div class="form-group col-md-3">
+  <label>Pets</label>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="pets" id="petsYes" [(ngModel)]="hotelAmenities.Pets" value="Yes" required>
+    <label class="form-check-label" for="petsYes">Yes</label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="pets" id="petsNo" [(ngModel)]="hotelAmenities.Pets" value="No" required>
+    <label class="form-check-label" for="petsNo">No</label>
+  </div>
+</div>
+
+<!-- Description -->
     <div class="form-group">
       <label for="description">Description</label>
       <textarea
@@ -129,6 +138,7 @@
         required
       ></textarea>
     </div>
+<!-- Images -->
     <div class="form-group">
       <label>Images (URLs)</label>
       <div
@@ -164,6 +174,7 @@
         </div>
       </div>
     </div>
+<!-- hotelDetails -->
     <div class="form-row">
       <div class="form-group col-md-4">
         <label for="airportDistance">Airport Distance</label>

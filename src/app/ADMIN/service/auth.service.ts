@@ -41,7 +41,6 @@ export class AuthService {
   logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("role"); // Remove role on logout
-    // Optionally clear other user data from local storage or cookies if stored
     this.router.navigate(["/login"]);
   }
 
@@ -61,16 +60,18 @@ export class AuthService {
   // New method to set the role
   setRole(role: string): void {
     localStorage.setItem("role", role);
+    const storedRole = localStorage.getItem("role");
+    console.log("Stored role immediately after setting:", storedRole);
   }
 
-  // Optionally, if you decide to store user details as a JSON string
+  isAdmin(): boolean {
+    const role = this.getRole();
+    return role?.trim().toLowerCase() === "admin";
+  }
+
+  // New method to store user details
   getUserDetails(): any {
     const userDetails = localStorage.getItem("user");
     return userDetails ? JSON.parse(userDetails) : null;
-  }
-
-  // New method to check if the user is an admin
-  isAdmin(): boolean {
-    return this.getRole() === "admin";
   }
 }

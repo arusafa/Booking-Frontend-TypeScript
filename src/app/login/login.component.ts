@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { AuthService } from "../service/auth.service";
+import { AuthService } from "../ADMIN/service/auth.service";
 import { User } from "../User/user.model";
 
 @Component({
@@ -13,37 +13,40 @@ export class LoginComponent {
     email: "",
     password: "",
   };
-  
+
   constructor(private authService: AuthService, private router: Router) {}
 
   onLogin(): void {
     if (!this.user.email || !this.user.password) {
+      
+      console.error("Email and password are required");
       return;
     }
+
     this.authService.login(this.user.email, this.user.password).subscribe({
       next: (response) => {
-        console.log("Login response:", response);
-        if (response.token && response.role) {
-          this.authService.setToken(response.token);
+        const { token } = response;
+        const role = response.role; 
+        this.authService.setRole(role); ////giving admin role to user
 
-          const userWithRole = {
-            ...response.user,
-            role: response.role,  
-            email: this.user.email,
-          };
-          console.log("Storing user with role and email:", userWithRole);
-          localStorage.setItem("user", JSON.stringify(userWithRole));
+        if (token && role) {
+          this.authService.setToken(token);
+          localStorage.setItem(
+            "user",
+            JSON.stringify({ role, email: this.user.email })
+          );
 
-          this.router.navigate(["/dashboard"]);
-          console.log("User logged in with role:", response.role);
+          const redirectRoute = role === "admin" ? "/dashboard" : "/dashboard";
+          this.router.navigate([redirectRoute]);
+
+          console.log("User logged in with role:", role);
         } else {
-          console.error("Invalid response structure:", response);
+          console.error("Unexpected response structure:", response);
         }
       },
       error: (error) => {
-        console.error(error);
+        console.error("Login error:", error);
       },
     });
-    
   }
 }
