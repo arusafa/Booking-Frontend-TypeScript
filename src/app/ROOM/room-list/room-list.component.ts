@@ -20,6 +20,7 @@ export class RoomListComponent implements OnInit {
       .filter(([key, value]) => key !== "_id" && value) // Filter out the '_id' property and false values
       .map(([key]) => key.replace(/([A-Z])/g, " $1").trim()) // Add space before capital letters for readability
       .join(", "); // Join the array elements into a string separated by commas
+      
   }
 
   formatBedType(bedType: any): string {
@@ -33,19 +34,20 @@ export class RoomListComponent implements OnInit {
   fetchRooms(): void {
     this.roomService.getAllRooms().subscribe({
       next: (data) => {
-        // each room has a RoomOptions array, and we want to flatten this structure for easier display
-        this.rooms = data
-          .map((room: any) => {
-            return room.RoomOptions.map((option: any) => {
-              return {
-                roomId: room._id, // Keep track of the room's ID
-                ...option, // Spread all properties of the RoomOptions
-                RoomAmenities: this.formatAmenities(option.RoomAmenities), // Format amenities for display
-                BedType: this.formatBedType(option.BedType), // Format bed type for display
-              };
-            });
-          })
-          .flat(); // Flatten the array since map will return an array of arrays
+        this.rooms = data.map((room: any) => ({
+          roomId: room.roomId,
+          RoomName: room.RoomName,
+          SquareFeet: room.SquareFeet,
+          RoomAmenities: room.RoomAmenities || '',
+          BedType: room.BedType || '', 
+          RoomMeals: room.RoomMeals || '', 
+          RoomImages: room.RoomImages || '', 
+          NumberOfBeds: room.NumberOfBeds,
+          NumOfEmptyRooms: room.NumOfEmptyRooms,
+          Price: room.Price,
+          NumberOfGuests: room.NumberOfGuests,
+        }));
+        
         console.log("Formatted Rooms Data:", this.rooms);
       },
       error: (error) => {
@@ -53,4 +55,5 @@ export class RoomListComponent implements OnInit {
       },
     });
   }
+  
 }

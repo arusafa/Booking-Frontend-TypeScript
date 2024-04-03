@@ -1,42 +1,27 @@
-<p>room-list works!</p>
 <div class="container mt-3">
+  <h2 class="text-center mb-4">Room List</h2>
   <div class="row">
-    <div class="col-md-12">
-      <h2 class="text-center mb-4">Room List</h2>
-      <div class="table-responsive">
-        <table class="table table-striped table-hover">
-          <thead class="thead-dark">
-            <tr>
-              <th>Room ID</th>
-              <th>Room Name</th>
-              <th>NumBeds</th>
-              <th>BedType</th>
-              <th>Square Feet</th>
-              <th>Amenities</th>
-              <th>Price</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let option of rooms">
-              <td>{{ option.roomId }}</td>
-              <td>{{ option.RoomName }}</td>
-              <td>
-                {{ option.NumberOfBeds }}
-              </td>
-              <td>{{ option.BedType }}</td>
-              <td>{{ option.SquareFeet }}</td>
-              <td>
-                {{ option.RoomAmenities }}
-              </td>
-              <td>{{ option.Price }}</td>
-              <td>
-                <button class="btn btn-outline-primary btn-sm">Edit</button><hr/>
-                <button class="btn btn-outline-danger btn-sm mt-1">Delete</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="col-md-4" *ngFor="let option of rooms">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">{{ option.RoomName }}</h5>
+          <p class="card-text">
+            <img [src]="option.RoomImages" class="img-fluid" alt="Room Image">
+          </p>
+          <p class="card-text">
+            <strong>Room ID:</strong> {{ option.roomId }}<br>
+            <strong>Beds:</strong> {{ option.NumberOfBeds }} ({{ option.BedType }})<br>
+            <strong>Size:</strong> {{ option.SquareFeet }} sqft<br>
+            <strong>Amenities:</strong> {{ option.RoomAmenities }}
+          </p>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="text-primary"><strong>${{ option.Price }}</strong></span>
+            <div class="card-text">
+              <button class="btn btn-outline-primary m-1 btn-sm ml-1">Edit</button>
+              <button class="btn btn-outline-danger m-1 btn-sm ml-1">Delete</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
