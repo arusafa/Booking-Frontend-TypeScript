@@ -38,38 +38,54 @@
                     required
                   ></textarea>
                 </div>
-                
+
+                <!-- Images Section -->
                 <div class="form-group">
-                  <label class="font-weight-bold">Images (URLs)</label>
+                  <label class="font-weight-bold">Images</label>
                   <div
                     *ngFor="let image of hotelDescription.Images; let i = index"
-                    class="d-flex mb-2"
+                    class="mb-3"
                   >
-                    <input
-                      type="text"
-                      class="form-control mr-2"
-                      [(ngModel)]="hotelDescription.Images[i]"
-                      name="image{{ i }}"
-                      placeholder="Enter image URL"
-                    />
-                    <button
-                      type="button"
-                      class="btn btn-outline-danger"
-                      (click)="removeImageField(i)"
-                      *ngIf="hotelDescription.Images.length > 1"
-                    >
-                      -
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-outline-primary ml-2"
-                      (click)="addImageField()"
-                      *ngIf="i === hotelDescription.Images.length - 1"
-                    >
-                      +
-                    </button>
+                    <!-- Display the image -->
+                    <div class="d-flex align-items-center">
+                      <img
+                        [src]="image"
+                        class="img-thumbnail mr-2"
+                        style="width: 200px; height: auto"
+                        onError="this.onerror=null;this.src='fallback-image-url';"
+                      />
+                      <!-- Input field to update the image URL -->
+                      <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="hotelDescription.Images[i]"
+                        name="image{{ i }}"
+                        placeholder="Enter new image URL"
+                      />
+                    </div>
+
+                    <!-- Buttons to remove or add image fields -->
+                    <div class="mt-2">
+                      <button
+                        type="button"
+                        class="btn btn-outline-danger btn-sm"
+                        (click)="removeImageField(i)"
+                        *ngIf="hotelDescription.Images.length > 1"
+                      >
+                        Remove
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-outline-primary btn-sm ml-2"
+                        (click)="addImageField()"
+                        *ngIf="i === hotelDescription.Images.length - 1"
+                      >
+                        Add Another Image
+                      </button>
+                    </div>
                   </div>
                 </div>
+
                 <div class="form-group">
                   <label for="hotelRating" class="font-weight-bold"
                     >Hotel Rating</label
@@ -189,6 +205,8 @@
                       >Pets Allowed</label
                     >
                   </div>
+
+                  <!-- Room Details-->
                 </div>
               </div>
             </div>

@@ -54,7 +54,8 @@ export class UpdateHotelComponent implements OnInit {
         this.hotelAddress = response.HotelAddress || this.hotelAddress;
         this.hotelRating = response.HotelRating || 0;
         this.hotelAmenities = response.HotelAmenities || this.hotelAmenities;
-        this.hotelDescription = response.HotelDescription || this.hotelDescription;
+        this.hotelDescription =
+          response.HotelDescription || this.hotelDescription;
         this.hotelDetails = response.HotelDetails || this.hotelDetails;
         this.dataLoaded = true;
         console.log("Hotel details:", response);
@@ -68,7 +69,7 @@ export class UpdateHotelComponent implements OnInit {
   cancel(): void {
     this.router.navigate(["/hotel-list"]);
   }
-  
+
   onUpdate(): void {
     // Prepare the updated hotel object
     const updatedHotel = {
@@ -77,26 +78,26 @@ export class UpdateHotelComponent implements OnInit {
         Country: this.hotelAddress.Country,
         City: this.hotelAddress.City,
         Province: this.hotelAddress.Province,
-        PostalCode: this.hotelAddress.PostalCode
+        PostalCode: this.hotelAddress.PostalCode,
       },
       HotelRating: this.hotelRating,
       HotelAmenities: {
         Pool: this.hotelAmenities.Pool,
         Gym: this.hotelAmenities.Gym,
         AirportShuttle: this.hotelAmenities.AirportShuttle,
-        Pets: this.hotelAmenities.Pets
+        Pets: this.hotelAmenities.Pets,
       },
       HotelDescription: {
         Images: this.hotelDescription.Images,
-        Description: this.hotelDescription.Description
+        Description: this.hotelDescription.Description,
       },
       HotelDetails: {
         AirportDistance: this.hotelDetails.AirportDistance,
         DowntownDistance: this.hotelDetails.DowntownDistance,
-        SeaDistance: this.hotelDetails.SeaDistance
-      }
+        SeaDistance: this.hotelDetails.SeaDistance,
+      },
     };
-  
+
     // Call the update service method
     this.hotelService.updateHotel(this.hotelId, updatedHotel).subscribe(
       (response) => {
@@ -109,9 +110,6 @@ export class UpdateHotelComponent implements OnInit {
       }
     );
   }
-  
-  
-  
 
   addImageField(): void {
     this.hotelDescription.Images.push("");
@@ -122,6 +120,4 @@ export class UpdateHotelComponent implements OnInit {
       this.hotelDescription.Images.splice(index, 1);
     }
   }
-
-  
 }
