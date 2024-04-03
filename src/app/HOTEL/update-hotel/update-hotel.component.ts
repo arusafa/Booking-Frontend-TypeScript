@@ -65,6 +65,51 @@ export class UpdateHotelComponent implements OnInit {
       }
     );
   }
+  cancel(): void {
+    this.router.navigate(["/hotel-list"]);
+  }
+  
+  onUpdate(): void {
+    // Prepare the updated hotel object
+    const updatedHotel = {
+      HotelName: this.hotelName,
+      HotelAddress: {
+        Country: this.hotelAddress.Country,
+        City: this.hotelAddress.City,
+        Province: this.hotelAddress.Province,
+        PostalCode: this.hotelAddress.PostalCode
+      },
+      HotelRating: this.hotelRating,
+      HotelAmenities: {
+        Pool: this.hotelAmenities.Pool,
+        Gym: this.hotelAmenities.Gym,
+        AirportShuttle: this.hotelAmenities.AirportShuttle,
+        Pets: this.hotelAmenities.Pets
+      },
+      HotelDescription: {
+        Images: this.hotelDescription.Images,
+        Description: this.hotelDescription.Description
+      },
+      HotelDetails: {
+        AirportDistance: this.hotelDetails.AirportDistance,
+        DowntownDistance: this.hotelDetails.DowntownDistance,
+        SeaDistance: this.hotelDetails.SeaDistance
+      }
+    };
+  
+    // Call the update service method
+    this.hotelService.updateHotel(this.hotelId, updatedHotel).subscribe(
+      (response) => {
+        // Navigate to the hotel list or show a success message
+        this.router.navigate(["/hotel-list"]);
+      },
+      (error) => {
+        // Handle errors, e.g., show an error message
+        console.error("Error occurred while updating hotel:", error);
+      }
+    );
+  }
+  
   
   
 
@@ -78,32 +123,5 @@ export class UpdateHotelComponent implements OnInit {
     }
   }
 
-  onUpdate(): void {
-    const updatedHotel = {
-      hotelName: this.hotelName,
-      Country: this.hotelAddress.Country,
-      City: this.hotelAddress.City,
-      Province: this.hotelAddress.Province,
-      PostalCode: this.hotelAddress.PostalCode,
-      rating: this.hotelRating,
-      Pool: this.hotelAmenities.Pool,
-      Gym: this.hotelAmenities.Gym,
-      AirportShuttle: this.hotelAmenities.AirportShuttle,
-      Pets: this.hotelAmenities.Pets,
-      Images: this.hotelDescription.Images,
-      description: this.hotelDescription,
-      AirportDistance: this.hotelDetails.AirportDistance,
-      DowntownDistance: this.hotelDetails.DowntownDistance,
-      SeaDistance: this.hotelDetails.SeaDistance,
-    };
-
-    this.hotelService.updateHotel(this.hotelId, updatedHotel).subscribe(
-      (response) => {
-        this.router.navigate(["/hotel-list"]);
-      },
-      (error) => {
-        console.error("Error occurred while updating hotel:", error);
-      }
-    );
-  }
+  
 }
