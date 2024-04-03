@@ -19,7 +19,7 @@ import { AdminAuthGuardService } from "./ADMIN/admin-guard/admin-auth-guard.serv
 const appRoutes: Routes = [
   { path: "signup", component: SignupComponent },
   { path: "login", component: LoginComponent },
-  { path: "hotel-list", component: HotelListComponent, canActivate: [AdminAuthGuardService] },
+  { path: "hotel-list", component: HotelListComponent, canActivate: [AuthGuard] },
   { path: "add-hotel", component: AddHotelComponent, canActivate: [AdminAuthGuardService] },
   { path: "**", redirectTo: "/login", pathMatch: "full" },
 ];

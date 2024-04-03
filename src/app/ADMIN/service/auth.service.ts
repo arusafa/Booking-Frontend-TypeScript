@@ -7,7 +7,7 @@ import { Router } from "@angular/router";
   providedIn: "root",
 })
 export class AuthService {
-  private apiUrl = "http://localhost:3001/auth";
+  private apiUrl = "https://booking-backend-seven.vercel.app/auth";
 
   constructor(private http: HttpClient, private router: Router) {}
 

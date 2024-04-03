@@ -7,7 +7,7 @@ import { Router } from "@angular/router";
   providedIn: "root",
 })
 export class HotelService {
-  private baseUrl = 'http://localhost:3001/admin/hotel';
+  private baseUrl = 'https://booking-backend-seven.vercel.app/admin/hotel';
 
   constructor(private http: HttpClient, private router: Router) { }
 

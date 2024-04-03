@@ -1,4 +1,4 @@
-// src/app/app-routing.module.ts
+
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AuthGuard } from "../ADMIN/guard/auth.guard";
