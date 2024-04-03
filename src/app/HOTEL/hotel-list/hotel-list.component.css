@@ -1,0 +1,66 @@
+.table-hover tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.table td, .table th {
+  vertical-align: middle;
+}
+
+.img-thumbnail {
+  width: 100px;
+  height: auto;
+  margin-right: 5px;
+}
+
+.amenities-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.amenities-list li::after {
+  content: "\2713\0020"; /* Unicode check mark with a space */
+  color: green; /* Change color as needed */
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Button styles */
+.btn-sm {
+  padding: .25rem .5rem;
+  font-size: .875rem;
+  line-height: 1.5;
+  border-radius: .2rem;
+}
+
+.btn-outline-primary {
+  color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-outline-primary:hover {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-outline-danger {
+  color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.mr-1 {
+  margin-right: .25rem;
+}
