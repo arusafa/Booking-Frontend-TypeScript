@@ -1,32 +1,49 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../service/auth.service';
-import { NgForm } from '@angular/forms';
-import { User } from '../User/user.model';
+import { Component } from "@angular/core";
+import { Router } from "@angular/router";
+import { AuthService } from "../service/auth.service";
+import { User } from "../User/user.model";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"],
 })
 export class LoginComponent {
-  user: User = new User('', '');
+  user: User = {
+    email: "",
+    password: "",
+  };
+  
   constructor(private authService: AuthService, private router: Router) {}
 
-  onLogin(form: NgForm): void {
-    if (!form.valid) {
+  onLogin(): void {
+    if (!this.user.email || !this.user.password) {
       return;
     }
-    this.authService.login(form.value.email, form.value.password).subscribe({
+    this.authService.login(this.user.email, this.user.password).subscribe({
       next: (response) => {
-        // Handle successful login, e.g., by storing the token and navigating to a dashboard
-        console.log(response);
-        this.router.navigate(['/dashboard']);
+        console.log("Login response:", response);
+        if (response.token && response.role) {
+          this.authService.setToken(response.token);
+
+          const userWithRole = {
+            ...response.user,
+            role: response.role,  
+            email: this.user.email,
+          };
+          console.log("Storing user with role and email:", userWithRole);
+          localStorage.setItem("user", JSON.stringify(userWithRole));
+
+          this.router.navigate(["/dashboard"]);
+          console.log("User logged in with role:", response.role);
+        } else {
+          console.error("Invalid response structure:", response);
+        }
       },
       error: (error) => {
-        // Handle login error, e.g., by showing an error message
         console.error(error);
-      }
+      },
     });
+    
   }
 }
