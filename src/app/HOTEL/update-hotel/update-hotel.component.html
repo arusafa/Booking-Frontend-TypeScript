@@ -1,1 +1,216 @@
-<p>update-hotel works!</p>
+<div class="container">
+  <h2>Update Hotel</h2>
+  <form (ngSubmit)="onUpdate()" *ngIf="dataLoaded">
+    <div class="form-group">
+      <label for="hotelName">Hotel Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="hotelName"
+        [(ngModel)]="hotelName"
+        name="hotelName"
+        required
+      />
+    </div>
+
+    <!-- Hotel Address -->
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="country">Country</label>
+        <input
+          type="text"
+          class="form-control"
+          id="country"
+          [(ngModel)]="hotelAddress.Country"
+          name="country"
+          required
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="city">City</label>
+        <input
+          type="text"
+          class="form-control"
+          id="city"
+          [(ngModel)]="hotelAddress.City"
+          name="city"
+          required
+        />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="province">Province</label>
+        <input
+          type="text"
+          class="form-control"
+          id="province"
+          [(ngModel)]="hotelAddress.Province"
+          name="province"
+          required
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="postalCode">Postal Code</label>
+        <input
+          type="text"
+          class="form-control"
+          id="postalCode"
+          [(ngModel)]="hotelAddress.PostalCode"
+          name="postalCode"
+          required
+        />
+      </div>
+    </div>
+
+    <!-- Hotel Rating -->
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="hotelRating">Hotel Rating</label>
+        <input
+          type="number"
+          class="form-control"
+          id="hotelRating"
+          [(ngModel)]="hotelRating"
+          name="hotelRating"
+          required
+          min="0"
+          max="5"
+        />
+      </div>
+    </div>
+
+    <!-- Hotel Amenities -->
+    <div class="form-group">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="pool"
+          [(ngModel)]="hotelAmenities.Pool"
+          name="pool"
+        />
+        <label class="form-check-label" for="pool">Pool</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="gym"
+          [(ngModel)]="hotelAmenities.Gym"
+          name="gym"
+        />
+        <label class="form-check-label" for="gym">Gym</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="airportShuttle"
+          [(ngModel)]="hotelAmenities.AirportShuttle"
+          name="airportShuttle"
+        />
+        <label class="form-check-label" for="airportShuttle"
+          >Airport Shuttle</label
+        >
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="pets"
+          [(ngModel)]="hotelAmenities.Pets"
+          name="pets"
+        />
+        <label class="form-check-label" for="pets">Pets</label>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        [(ngModel)]="hotelDescription.Description"
+        name="description"
+        required
+      ></textarea>
+    </div>
+
+    <!-- Images -->
+    <div class="form-group">
+      <label>Images (URLs)</label>
+      <div
+        *ngFor="let image of hotelDescription.Images; let i = index"
+        class="form-row align-items-center mb-2"
+      >
+        <div class="col">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="hotelDescription.Images[i]"
+            name="image{{ i }}"
+            placeholder="Enter Image URL"
+          />
+        </div>
+        <div class="col-auto">
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="removeImageField(i)"
+            *ngIf="hotelDescription.Images.length > 1"
+          >
+            Remove
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="addImageField()"
+            *ngIf="i === hotelDescription.Images.length - 1"
+          >
+            Add Another Image
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hotel Details -->
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="airportDistance">Airport Distance</label>
+        <input
+          type="text"
+          class="form-control"
+          id="airportDistance"
+          [(ngModel)]="hotelDetails.AirportDistance"
+          name="airportDistance"
+          required
+        />
+      </div>
+      <div class="form-group col-md-4">
+        <label for="downtownDistance">Downtown Distance</label>
+        <input
+          type="text"
+          class="form-control"
+          id="downtownDistance"
+          [(ngModel)]="hotelDetails.DowntownDistance"
+          name="downtownDistance"
+          required
+        />
+      </div>
+      <div class="form-group col-md-4">
+        <label for="seaDistance">Sea Distance</label>
+        <input
+          type="text"
+          class="form-control"
+          id="seaDistance"
+          [(ngModel)]="hotelDetails.SeaDistance"
+          name="seaDistance"
+          required
+        />
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Hotel </button>
+  </form>
+</div>

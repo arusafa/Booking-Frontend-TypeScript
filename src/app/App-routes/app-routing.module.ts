@@ -10,6 +10,7 @@ import { AddHotelComponent } from "../HOTEL/add-hotel/add-hotel.component";
 import { AdminAuthGuardService } from "../ADMIN/admin-guard/admin-auth-guard.service";
 import { RoomListComponent } from "../ROOM/room-list/room-list.component";
 import { AddRoomComponent } from "../ROOM/add-room/add-room.component";
+import { UpdateHotelComponent } from "../HOTEL/update-hotel/update-hotel.component";
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: "add-hotel", component: AddHotelComponent, canActivate: [AdminAuthGuardService] },
   { path: "add-room", component: AddRoomComponent, canActivate: [AdminAuthGuardService] },
   {path:"add-room/:hotelId", component: AddRoomComponent, canActivate: [AdminAuthGuardService]},
+  {path:"update-hotel/:id", component: UpdateHotelComponent, canActivate: [AdminAuthGuardService]},
   { path: "hotel-list", component: HotelListComponent, canActivate: [AuthGuard] },
   { path: "room-list", component: RoomListComponent, canActivate: [AuthGuard] },
   { path: "**", redirectTo: "/login", pathMatch: "full"}

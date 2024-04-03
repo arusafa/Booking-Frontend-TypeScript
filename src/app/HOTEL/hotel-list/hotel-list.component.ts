@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HotelService } from '../hotel-services/hotel.service';
 import { RoomService } from '../../ROOM/room-services/room-services.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hotel-list',
@@ -9,7 +10,7 @@ import { RoomService } from '../../ROOM/room-services/room-services.service';
 })
 export class HotelListComponent implements OnInit {
   hotels: any[] = [];
-  constructor(private hotelService: HotelService, private roomService: RoomService) { }
+  constructor(private hotelService: HotelService, private roomService: RoomService, private router: Router) { }
 
   ngOnInit(): void {
     this.fetchHotels();
@@ -42,5 +43,9 @@ export class HotelListComponent implements OnInit {
       },
       error => console.error('Error fetching all rooms:', error)
     );
+  }
+  
+  onEditRoute(){
+    this.router.navigate(['update-hotel/:id']);
   }
 }
