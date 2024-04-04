@@ -1,215 +1,304 @@
-<div class="container">
-  <h2>Add Hotel</h2>
-  <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="hotelName">Hotel Name</label>
-      <input
-        type="text"
-        class="form-control"
-        id="hotelName"
-        [(ngModel)]="hotelName"
-        name="hotelName"
-        required
-      />
-    </div>
-<!-- Hotel Address -->
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="country">Country</label>
-        <input
-          type="text"
-          class="form-control"
-          id="country"
-          [(ngModel)]="hotelAddress.Country"
-          name="country"
-          required
-        />
-      </div>
-      <div class="form-group col-md-6">
-        <label for="city">City</label>
-        <input
-          type="text"
-          class="form-control"
-          id="city"
-          [(ngModel)]="hotelAddress.City"
-          name="city"
-          required
-        />
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="province">Province</label>
-        <input
-          type="text"
-          class="form-control"
-          id="province"
-          [(ngModel)]="hotelAddress.Province"
-          name="province"
-          required
-        />
-      </div>
-      <div class="form-group col-md-6">
-        <label for="postalCode">Postal Code</label>
-        <input
-          type="text"
-          class="form-control"
-          id="postalCode"
-          [(ngModel)]="hotelAddress.PostalCode"
-          name="postalCode"
-          required
-        />
-      </div>
-    </div>
-<!-- Hotel Rating -->
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="hotelRating">Hotel Rating</label>
-        <input
-          type="number"
-          class="form-control"
-          id="hotelRating"
-          [(ngModel)]="hotelRating"
-          name="hotelRating"
-          required
-        />
-      </div>
-    </div>
-<!-- Pool -->
-<div class="form-group col-md-3">
-  <label>Pool</label>
-  <div class="form-check">
-    <input class="form-check-input" type="radio" name="pool" id="poolYes" [(ngModel)]="hotelAmenities.Pool" value="Yes" required>
-    <label class="form-check-label" for="poolYes">Yes</label>
-  </div>
-  <div class="form-check">
-    <input class="form-check-input" type="radio" name="pool" id="poolNo" [(ngModel)]="hotelAmenities.Pool" value="No" required>
-    <label class="form-check-label" for="poolNo">No</label>
-  </div>
-</div>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="card shadow-lg border-0">
+        <div class="card-body">
+          <h2 class="text-center mb-5 font-weight-bold">
+            Add Hotel Details
+          </h2>
+          <form (ngSubmit)="onSubmit()">
+            <div class="row">
+              <!-- Left Column for Hotel Info -->
+              <div class="col-md-6 pr-md-5">
+                <div class="form-group">
+                  <label for="hotelName" class="font-weight-bold"
+                    >Hotel Name</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="hotelName"
+                    [(ngModel)]="hotelName"
+                    name="hotelName"
+                    placeholder="Enter hotel name"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="description" class="font-weight-bold"
+                    >Description</label
+                  >
+                  <textarea
+                    class="form-control"
+                    id="description"
+                    [(ngModel)]="hotelDescription.Description"
+                    name="description"
+                    rows="4"
+                    placeholder="Describe the hotel"
+                    required
+                  ></textarea>
+                </div>
+                <!-- Images Section -->
+                <div class="form-group">
+                  <label>Images (URLs)</label>
+                  <div
+                    *ngFor="let image of hotelDescription.Images; let i = index"
+                    class="form-row align-items-center mb-2"
+                  >
+                    <div class="col">
+                      <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="hotelDescription.Images[i]"
+                        name="image{{ i }}"
+                        placeholder="Enter Image URL"
+                      />
+                    </div>
+                    <div class="col-auto">
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        (click)="removeImageField(i)"
+                        *ngIf="hotelDescription.Images.length > 1"
+                      >
+                        Remove
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="addImageField()"
+                        *ngIf="i === hotelDescription.Images.length - 1"
+                      >
+                        Add Another Image
+                      </button>
+                    </div>
+                  </div>
+                </div>
 
-<!-- Gym -->
-<div class="form-group col-md-3">
-  <label>Gym</label>
-  <div class="form-check">
-    <input class="form-check-input" type="radio" name="gym" id="gymYes" [(ngModel)]="hotelAmenities.Gym" value="Yes" required>
-    <label class="form-check-label" for="gymYes">Yes</label>
-  </div>
-  <div class="form-check">
-    <input class="form-check-input" type="radio" name="gym" id="gymNo" [(ngModel)]="hotelAmenities.Gym" value="No" required>
-    <label class="form-check-label" for="gymNo">No</label>
-  </div>
-</div>
+                <!-- Rooms Name Section with addRoom and deleteRoom -->
 
-<!-- Airport Shuttle -->
-<div class="form-group col-md-3">
-  <label>Airport Shuttle</label>
-  <div class="form-check">
-    <input class="form-check-input" type="radio" name="airportShuttle" id="shuttleYes" [(ngModel)]="hotelAmenities.AirportShuttle" value="Yes" required>
-    <label class="form-check-label" for="shuttleYes">Yes</label>
-  </div>
-  <div class="form-check">
-    <input class="form-check-input" type="radio" name="airportShuttle" id="shuttleNo" [(ngModel)]="hotelAmenities.AirportShuttle" value="No" required>
-    <label class="form-check-label" for="shuttleNo">No</label>
-  </div>
-</div>
 
-<!-- Pets -->
-<div class="form-group col-md-3">
-  <label>Pets</label>
-  <div class="form-check">
-    <input class="form-check-input" type="radio" name="pets" id="petsYes" [(ngModel)]="hotelAmenities.Pets" value="Yes" required>
-    <label class="form-check-label" for="petsYes">Yes</label>
-  </div>
-  <div class="form-check">
-    <input class="form-check-input" type="radio" name="pets" id="petsNo" [(ngModel)]="hotelAmenities.Pets" value="No" required>
-    <label class="form-check-label" for="petsNo">No</label>
-  </div>
-</div>
 
-<!-- Description -->
-    <div class="form-group">
-      <label for="description">Description</label>
-      <textarea
-        class="form-control"
-        id="description"
-        [(ngModel)]="hotelDescription.Description"
-        name="description"
-        required
-      ></textarea>
-    </div>
-<!-- Images -->
-    <div class="form-group">
-      <label>Images (URLs)</label>
-      <div
-        *ngFor="let image of hotelDescription.Images; let i = index"
-        class="form-row align-items-center mb-2"
-      >
-        <div class="col">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="hotelDescription.Images[i]"
-            name="image{{ i }}"
-            placeholder="Enter Image URL"
-          />
+                 <!-- Add and Cancel Buttons -->
+            <div class="text-center mt-4">
+              <button type="submit" class="btn btn-success">
+                Add Hotel
+              </button>
+              <button
+                (click)="cancel()"
+                type="button"
+                class="btn btn-danger ml-2"
+              >
+                Cancel
+              </button>
+            </div>
+
+
+              </div>
+              <!-- Right Column for Address and Amenities -->
+              <div class="col-md-5 pl-md-6">
+                <h4 class="mb-2 text-center border-b font-weight-bold">
+                  Location & Amenities
+                </h4>
+                <!--Right Column for Address -->
+                <div class="flex-col m-1">
+                  <!--Country and City-->
+                  <div class="d-flex form-row mt-4 m-2">
+                    <div class="form-group col-md-6 mt-2 mr-7">
+                      <label class="ml-1" for="country">Country</label>
+                      <input
+                        type="text"
+                        class="form-control mr-2 m-1"
+                        id="country"
+                        [(ngModel)]="hotelAddress.Country"
+                        name="country"
+                        placeholder="Country"
+                        required
+                      />
+                    </div>
+                    <div class="form-group col-md-6 mt-2 mr-7">
+                      <label class="ml-1" for="city">City</label>
+                      <input
+                        type="text"
+                        class="form-control mr-2 m-1"
+                        id="city"
+                        [(ngModel)]="hotelAddress.City"
+                        name="city"
+                        placeholder="City"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <!--Province and PostalCode-->
+                  <div class="d-flex form-row mt-4 m-2">
+                    <div class="form-group col-md-6 mt-2 mr-7">
+                      <label class="ml-1" for="province">Province</label>
+                      <input
+                        type="text"
+                        class="form-control mr-2 m-1"
+                        id="province"
+                        [(ngModel)]="hotelAddress.Province"
+                        name="province"
+                        placeholder="Province"
+                        required
+                      />
+                    </div>
+                    <div class="form-group col-md-6 mt-2 mr-7">
+                      <label class="ml-1" for="postalCode">Postal Code</label>
+                      <input
+                        type="text"
+                        class="form-control mr-2 m-1"
+                        id="postalCode"
+                        [(ngModel)]="hotelAddress.PostalCode"
+                        name="postalCode"
+                        placeholder="Postal Code"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <!--Right Column for Amenities-->
+                <div class="">
+                  <div class="border-4 mt-4">
+                    <div class="d-flex form-row">
+                      <!--Pets and Gym-->
+                      <div class="form-check">
+                        <div class="form-check form-check-inline">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="pets"
+                            [(ngModel)]="hotelAmenities.Pets"
+                            name="pets"
+                          />
+                          <label class="form-check-label" for="pets"
+                            >Pets Allowed</label
+                          >
+                        </div>
+
+                        <div class="form-row">
+                          <div class="form-check form-check-inline">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              id="gym"
+                              [(ngModel)]="hotelAmenities.Gym"
+                              name="gym"
+                            />
+                            <label class="form-check-label" for="gym"
+                              >Gym</label
+                            >
+                          </div>
+                        </div>
+                      </div>
+
+                      <!--Airport Shuttle and Pool-->
+                      <div class="form-check">
+                        <div class="form-check-inline flex">
+                          <input
+                            class="form-check-input m-1"
+                            type="checkbox"
+                            id="airportShuttle"
+                            [(ngModel)]="hotelAmenities.AirportShuttle"
+                            name="airportShuttle"
+                          />
+                          <label class="form-check-label" for="airportShuttle"
+                            >Airport Shuttle</label
+                          >
+                        </div>
+
+                        <div class="form-check-inline">
+                          <input
+                            class="form-check-input m-1"
+                            type="checkbox"
+                            id="pool"
+                            [(ngModel)]="hotelAmenities.Pool"
+                            name="pool"
+                          />
+                          <label class="form-check-label" for="pool"
+                            >Pool</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- HotelRating and AirportDistance -->
+                  <div class="d-flex form-row">
+                    <div class="form-group mt-4">
+                      <label for="hotelRating" class="font-weight-bold"
+                        >Hotel Rating</label
+                      >
+                      <input
+                        type="number"
+                        class="form-control mr-4"
+                        id="hotelRating"
+                        [(ngModel)]="hotelRating"
+                        name="hotelRating"
+                        placeholder="0-5"
+                        min="0"
+                        max="5"
+                        step="0.1"
+                        required
+                      />
+                    </div>
+
+                    <div class="form-group mt-4">
+                      <label class="ml-7" for="airportDistance"
+                        >Airport Distance</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control ml-7"
+                        id="airportDistance"
+                        [(ngModel)]="hotelDetails.AirportDistance"
+                        name="airportDistance"
+                        placeholder="Airport Distance"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Downtown and Sea Distance -->
+                  <div class="d-flex form-row">
+                    <div class="form-group mt-5">
+                      <label for="downtownDistance">Downtown Distance</label>
+                      <input
+                        type="text"
+                        class="form-control mr-4"
+                        id="downtownDistance"
+                        [(ngModel)]="hotelDetails.DowntownDistance"
+                        name="downtownDistance"
+                        placeholder="Downtown Distance"
+                        required
+                      />
+                    </div>
+
+                    <div class="form-group mt-5">
+                      <label class="ml-7" for="seaDistance">Sea Distance</label>
+                      <input
+                        type="text"
+                        class="form-control ml-7"
+                        id="seaDistance"
+                        [(ngModel)]="hotelDetails.SeaDistance"
+                        name="seaDistance"
+                        placeholder="Sea Distance"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+
+           
+          </form>
         </div>
-        <div class="col-auto">
-          <button
-            type="button"
-            class="btn btn-danger"
-            (click)="removeImageField(i)"
-            *ngIf="hotelDescription.Images.length > 1"
-          >
-            Remove
-          </button>
-          <button
-            type="button"
-            class="btn btn-primary"
-            (click)="addImageField()"
-            *ngIf="i === hotelDescription.Images.length - 1"
-          >
-            Add Another Image
-          </button>
-        </div>
       </div>
     </div>
-<!-- hotelDetails -->
-    <div class="form-row">
-      <div class="form-group col-md-4">
-        <label for="airportDistance">Airport Distance</label>
-        <input
-          type="text"
-          class="form-control"
-          id="airportDistance"
-          [(ngModel)]="hotelDetails.AirportDistance"
-          name="airportDistance"
-          required
-        />
-      </div>
-      <div class="form-group col-md-4">
-        <label for="downtownDistance">Downtown Distance</label>
-        <input
-          type="text"
-          class="form-control"
-          id="downtownDistance"
-          [(ngModel)]="hotelDetails.DowntownDistance"
-          name="downtownDistance"
-          required
-        />
-      </div>
-      <div class="form-group col-md-4">
-        <label for="seaDistance">Sea Distance</label>
-        <input
-          type="text"
-          class="form-control"
-          id="seaDistance"
-          [(ngModel)]="hotelDetails.SeaDistance"
-          name="seaDistance"
-          required
-        />
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+  </div>
 </div>
+

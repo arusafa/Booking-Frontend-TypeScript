@@ -73,6 +73,9 @@ export class AddHotelComponent {
       }
     );
   }
+  cancel(): void {
+    this.router.navigate(["/dashboard"]);
+  }
 
   // Function to add a room to the hotel
   addRoom(roomId: string): void {
