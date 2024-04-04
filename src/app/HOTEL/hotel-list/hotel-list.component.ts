@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class HotelListComponent implements OnInit {
   hotels: any[] = [];
+  currentHotelIndex: number = 0;
   constructor(private hotelService: HotelService, private roomService: RoomService, private router: Router) { }
 
   ngOnInit(): void {
@@ -44,8 +45,34 @@ export class HotelListComponent implements OnInit {
       error => console.error('Error fetching all rooms:', error)
     );
   }
-  
   onEditRoute(){
     this.router.navigate(['update-hotel/:id']);
   }
+
+  /*
+  // Sliding functionality
+  nextHotel(): void {
+    if (this.currentHotelIndex < this.hotels.length - 1) {
+      this.currentHotelIndex++;
+    } else {
+      this.currentHotelIndex = 0; // Loop back to first
+    }
+  }
+
+  prevHotel(): void {
+    if (this.currentHotelIndex > 0) {
+      this.currentHotelIndex--;
+    } else {
+      this.currentHotelIndex = this.hotels.length - 1; // Loop back to last
+    }
+  }
+
+  /
+  viewRooms(hotel: any): void {
+    // Logic to view rooms, e.g., navigate to a room details page or open a modal
+    console.log('Viewing rooms for hotel:', hotel.HotelName);
+    // Example of navigating to a new route
+    this.router.navigate(['/hotel-rooms', hotel._id]);
+    }
+  */
 }

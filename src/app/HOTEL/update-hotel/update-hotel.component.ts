@@ -89,7 +89,6 @@ export class UpdateHotelComponent implements OnInit {
       console.log(this.roomData); // Add this line
     }
   }
-  
 
   fetchHotelDetails(hotelId: string): void {
     this.hotelService.getHotelById(hotelId).subscribe(
