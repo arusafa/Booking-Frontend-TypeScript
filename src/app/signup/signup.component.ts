@@ -19,7 +19,8 @@ export class SignupComponent {
   };
   constructor(private authService: AuthService, private router: Router) {}
 
-  onSignup(): void {
+  onSignup(event: Event): void {
+    event.preventDefault(); // Prevent default form submission
     if (
       !this.user.email ||
       !this.user.password ||

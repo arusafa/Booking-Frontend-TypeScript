@@ -3,7 +3,7 @@
     <div class="w-full max-w-lg bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
       <div class="px-10 py-8">
         <p class="text-center text-lg text-black-50 mb-6">Please enter your details to sign up!</p>
-        <form (ngSubmit)="onSignup()" #form="ngForm" class="space-y-6">
+        <form (ngSubmit)="onSignup($event)" #form="ngForm" class="space-y-6">
 
           <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
