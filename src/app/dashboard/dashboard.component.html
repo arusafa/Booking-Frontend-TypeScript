@@ -1,31 +1,30 @@
-<div class="jumbotron">
-  <div class="container">
+<div class="bg-gray-200 p-6">
+  <div class="container mx-auto">
     <div class="row">
       <div class="col-md-12">
-        <h3>Dashboard</h3>
-        <h1>Welcome - Email: {{ user.email }}</h1>
-        <button (click)="onLogoutClick()" class="btn btn-danger">Logout</button>
+        <h3 class="text-lg font-semibold">Dashboard</h3>
+        <h1 class="text-2xl font-bold">Welcome - Email: {{ user.email }}</h1>
+        <button (click)="onLogoutClick()" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700 transition ease-in-out duration-150">Logout</button>
       </div>
     </div>
   </div>
 </div>
-<hr />
-<div class="align-content-lg-around">
-  <button (click)="onHotelListClick()" class="btn btn-info">Hotel List</button>
-  <button (click)="onHotelCreateClick()" class="btn btn-dark">
-    Hotel Create
-  </button>
+<hr class="my-6" />
+<div class="flex justify-around">
+  <button (click)="onHotelListClick()" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition ease-in-out duration-150">Hotel List</button>
+  <button (click)="onHotelCreateClick()" class="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-900 transition ease-in-out duration-150">Hotel Create</button>
 </div>
-<hr />
-<div class="align-content-lg-around">
-  <button (click)="onRoomListClick()" class="btn btn-warning">Room List</button>
-  <button (click)="onRoomCreateClick()" class="btn btn-success">
-    Room Create
-  </button>
+<hr class="my-6" />
+<div class="flex justify-around">
+  <button (click)="onRoomListClick()" class="px-4 py-2 bg-yellow-400 text-white rounded hover:bg-yellow-500 transition ease-in-out duration-150">Room List</button>
+  <button (click)="onRoomCreateClick()" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition ease-in-out duration-150">Room Create</button>
 </div>
-<hr />
-<div class="align-content-lg-around">
-  <button (click)="onAddRoomToHotel()" class="btn btn-secondary">
+<hr class="my-6" />
+<div class="flex justify-around">
+  <button (click)="onAddRoomToHotel()" class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800 transition ease-in-out duration-150">
     Hotel Room Create
   </button>
 </div>
+<h1 class="text-3xl font-bold underline text-center mt-8">
+  Hello world!
+</h1>

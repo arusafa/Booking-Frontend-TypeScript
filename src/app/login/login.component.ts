@@ -16,9 +16,10 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  onLogin(): void {
+  onLogin(event: Event): void {
+    event.preventDefault(); // Prevent default form submission
+
     if (!this.user.email || !this.user.password) {
-      
       console.error("Email and password are required");
       return;
     }
@@ -26,8 +27,8 @@ export class LoginComponent {
     this.authService.login(this.user.email, this.user.password).subscribe({
       next: (response) => {
         const { token } = response;
-        const role = response.role; 
-        this.authService.setRole(role); ////giving admin role to user
+        const role = response.role;
+        this.authService.setRole(role); // Giving admin role to user
 
         if (token && role) {
           this.authService.setToken(token);
@@ -48,5 +49,10 @@ export class LoginComponent {
         console.error("Login error:", error);
       },
     });
+  }
+  showPassword: boolean = false;
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 }
