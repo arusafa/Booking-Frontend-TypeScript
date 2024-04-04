@@ -28,6 +28,20 @@ export class UpdateHotelComponent implements OnInit {
     SeaDistance: "",
   };
   dataLoaded: boolean = false; // Flag to indicate when data is loaded.
+  
+  roomData: any[] = [{
+    RoomName: "",
+    Price: 0,
+    NumberOfBeds: 0,
+    BedType: { Single: 0, Double: 0, Queen: 0, King: 0 },
+    SquareFeet: 0,
+    RoomAmenities: {
+      Wifi: "No",
+      CableTv: "No",
+      FreeCancellation: "No",
+      NonSmoking: "No",
+    },
+  }];
 
   constructor(
     private hotelService: HotelService,
@@ -46,6 +60,36 @@ export class UpdateHotelComponent implements OnInit {
       }
     });
   }
+  addRoom(): void {
+    this.roomData.push({
+      RoomName: "",
+      Price: 0,
+      NumberOfBeds: 0,
+      BedType: { Single: 0, Double: 0, Queen: 0, King: 0 },
+      SquareFeet: 0,
+      RoomAmenities: {
+        Wifi: "No",
+        CableTv: "No",
+        FreeCancellation: "No",
+        NonSmoking: "No",
+      },
+      RoomMeals:{
+        Breakfast: "No",
+        Dinner: "No",
+        BreakfastAndDinner: "No",
+      },
+      RoomImages: [""]
+    });
+    console.log(this.roomData); // Add this line
+  }
+  
+  removeRoom(index: number): void {
+    if (this.roomData.length > 1) {
+      this.roomData.splice(index, 1);
+      console.log(this.roomData); // Add this line
+    }
+  }
+  
 
   fetchHotelDetails(hotelId: string): void {
     this.hotelService.getHotelById(hotelId).subscribe(
