@@ -58,4 +58,8 @@ export class SignupComponent {
         },
       });
   }
+  showPassword: boolean = false;
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
 }
