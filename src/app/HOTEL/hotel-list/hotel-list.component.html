@@ -19,25 +19,25 @@
           </div>
 
           <div class="d-lg-flex">
-          <ul class="list-none">
-            <li class="px-6 py-3 border-t border-gray-200">
-              Rating: {{ hotel.HotelRating }}
-            </li>
-            <li class="px-6 py-3">
-              Pool: {{ hotel.HotelAmenities.Pool ? "Yes" : "No" }}
-            </li>
-            <li class="px-6 py-3">
-              Gym: {{ hotel.HotelAmenities.Gym ? "Yes" : "No" }}
-            </li>
-            <li class="px-6 py-3">
-              Airport Shuttle:
-              {{ hotel.HotelAmenities.AirportShuttle ? "Yes" : "No" }}
-            </li>
-            <li class="px-6 py-3 border-b border-gray-200">
-              Pets: {{ hotel.HotelAmenities.Pets ? "Yes" : "No" }}
-            </li>
-          </ul>
-        </div>
+            <ul class="list-none">
+              <li class="px-6 py-3 border-t border-gray-200">
+                Rating: {{ hotel.HotelRating }}
+              </li>
+              <li class="px-6 py-3">
+                Pool: {{ hotel.HotelAmenities.Pool ? "Yes" : "No" }}
+              </li>
+              <li class="px-6 py-3">
+                Gym: {{ hotel.HotelAmenities.Gym ? "Yes" : "No" }}
+              </li>
+              <li class="px-6 py-3">
+                Airport Shuttle:
+                {{ hotel.HotelAmenities.AirportShuttle ? "Yes" : "No" }}
+              </li>
+              <li class="px-6 py-3 border-b border-gray-200">
+                Pets: {{ hotel.HotelAmenities.Pets ? "Yes" : "No" }}
+              </li>
+            </ul>
+          </div>
           <div class="p-6 flex-1">
             <p class="text-sm text-gray-700">
               Airport Distance: {{ hotel.HotelDetails.AirportDistance }} km
@@ -53,7 +53,7 @@
               class="flex mt-4"
             >
               <img
-              alt="Hotel Image"
+                alt="Hotel Image"
                 *ngFor="let image of hotel.HotelDescription.Images"
                 [src]="image"
                 class="w-24 h-24 mr-2 rounded"
@@ -61,43 +61,48 @@
               />
             </div>
             <!-- Room Details -->
-            <div *ngIf="hotel.rooms && hotel.rooms.length > 0" class="mt-6">
-              <h6 class="text-lg mb-2">Room Details</h6>
-              <div class="border-t border-gray-200"></div>
-              <div *ngFor="let room of hotel.rooms" class="mt-3">
-                <p class="text-sm">
-                  {{ room.RoomName }}: ${{ room.Price }} per night
-                </p>
-                <p class="text-sm">
-                  {{ room.NumberOfBeds }} {{ room.BedType }} bed(s)
-                </p>
-                <p class="text-sm">{{ room.SquareFeet }} sqft</p>
-                <p class="text-sm">Amenities: {{ room.RoomAmenities }}</p>
-              </div>
+            <div class="mt-4">
+              <h6 class="text-sm font-semibold">Rooms</h6>
+              <a
+                class="text-blue-500 hover:text-blue-600 text-sm font-semibold"
+                [routerLink]="['/view-rooms', hotel._id]"
+                >View Rooms</a
+              >
+              <a
+                class="text-green-800 hover:text-gray-800 text-sm font-semibold ml-4"
+                [routerLink]="['/add-room', hotel._id]"
+                >Add Room</a
+              >
             </div>
             <!-- End Room Details -->
-          </div>
-          <div class="p-6 border-t border-gray-200 text-right">
-            <a
-              class="text-blue-500 hover:text-blue-600 text-sm font-semibold"
-              [routerLink]="['/update-hotel', hotel._id]"
-              >Update Hotel</a
-            >
-            <button
-              class="text-red-500 hover:text-red-600 text-sm font-semibold ml-4"
-            >
-              Delete Hotel
-            </button>
+
+            <!-- View Reviews -->
+            <div class="mt-4">
+              <h6 class="text-sm font-semibold">Reviews</h6>
+            </div>
+            <!--View Reviews -->
+            <div class="p-6 border-t border-gray-200 text-right">
+              <a
+                class="text-blue-500 hover:text-blue-600 text-sm font-semibold"
+                [routerLink]="['/update-hotel', hotel._id]"
+                >Update Hotel</a
+              >
+              <button
+                class="text-red-500 hover:text-red-600 text-sm font-semibold ml-4"
+              >
+                Delete Hotel
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<ng-template #noHotels>
-  <div class="text-center py-6">
-    <div class="alert alert-warning">
-      <p class="text-sm text-yellow-600">No hotels found.</p>
+  <ng-template #noHotels>
+    <div class="text-center py-6">
+      <div class="alert alert-warning">
+        <p class="text-sm text-yellow-600">No hotels found.</p>
+      </div>
     </div>
-  </div>
-</ng-template>
+  </ng-template>
+</div>
