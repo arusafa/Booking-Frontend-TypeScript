@@ -29,24 +29,6 @@ export class RoomService {
     );
   }
 
-  getRoomsByHotelId(id: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/byHotel/${id}`).pipe(
-      map((data) => {
-        // Flatten the room options and format amenities and bed types
-        return data
-          .map((room: any) =>
-            room.RoomOptions.map((option: any) => ({
-              roomId: room._id,
-              ...option,
-              RoomAmenities: this.formatAmenities(option.RoomAmenities),
-              BedType: this.formatBedType(option.BedType),
-            }))
-          )
-          .flat();
-      })
-    );
-  }
-
   formatAmenities(amenities: any): string {
     // Convert the amenities object into a string list for display
     return Object.entries(amenities)

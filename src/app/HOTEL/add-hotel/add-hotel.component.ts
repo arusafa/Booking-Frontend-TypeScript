@@ -59,7 +59,6 @@ export class AddHotelComponent {
       HotelAmenities: hotelAmenities,
       HotelDescription: this.hotelDescription,
       HotelDetails: this.hotelDetails,
-      Rooms: this.rooms,
     };
 
     this.hotelService.createHotel(hotelData).subscribe(

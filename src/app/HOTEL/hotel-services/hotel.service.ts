@@ -18,6 +18,9 @@ export class HotelService {
   getHotelById(hotelId: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/${hotelId}`);
   }
+  getRoomsForHotel(hotelId: string, roomId: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/${hotelId}/${roomId}`);
+  }
 
   createHotel(hotel: any): Observable<any> {
     const token = localStorage.getItem("token");
