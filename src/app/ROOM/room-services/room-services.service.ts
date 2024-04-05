@@ -28,6 +28,17 @@ export class RoomService {
       })
     );
   }
+  getRoomById(roomId: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/${roomId}`).pipe(
+      map((room) => ({
+        roomId: room._id,
+        ...room,
+        RoomAmenities: this.formatAmenities(room.RoomAmenities),
+        BedType: this.formatBedType(room.BedType),
+      })
+      )
+    );
+  }
 
   formatAmenities(amenities: any): string {
     // Convert the amenities object into a string list for display

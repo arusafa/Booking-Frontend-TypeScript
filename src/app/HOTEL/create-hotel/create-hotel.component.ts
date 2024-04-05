@@ -3,11 +3,11 @@ import { HotelService } from "../hotel-services/hotel.service";
 import { Router } from "@angular/router";
 
 @Component({
-  selector: "app-add-hotel",
-  templateUrl: "./add-hotel.component.html",
-  styleUrls: ["./add-hotel.component.css"],
+  selector: "app-create-hotel",
+  templateUrl: "./create-hotel.component.html",
+  styleUrls: ["./create-hotel.component.css"],
 })
-export class AddHotelComponent {
+export class CreateHotelComponent {
   hotelName: string = "";
   hotelAddress: any = {
     Country: "",

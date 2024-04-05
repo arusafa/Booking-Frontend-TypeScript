@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { AuthService } from "../ADMIN/service/auth.service";
-import { User } from "../User/user.model";
+import { User } from "../../User/user.model";
 
 @Component({
   selector: "app-dashboard",
@@ -37,13 +37,13 @@ export class DashboardComponent {
     this.router.navigate(["/hotel-list"]);
   }
   onHotelCreateClick() {
-    this.router.navigate(["/add-hotel"]);
+    this.router.navigate(["/create-hotel"]);
   }
   onRoomListClick() {
     this.router.navigate(["/room-list"]);
   }
   onRoomCreateClick() {
-    this.router.navigate(["/add-room"]);
+    this.router.navigate(["/create-room"]);
   }
   onAddRoomToHotel() {
     this.router.navigate(["/add-room/:hotelId"]);

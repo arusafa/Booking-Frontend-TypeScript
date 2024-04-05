@@ -12,7 +12,8 @@ export class HotelListComponent implements OnInit {
   hotels: any[] = [];
   hotelId: string = "";
   currentHotelIndex: number = 0;
-  roomIds: string[] = [];
+  rooms: string[] = [];
+  roomId: string = "";
   constructor(
     private hotelService: HotelService,
     private roomService: RoomService,
@@ -20,36 +21,43 @@ export class HotelListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.fetchHotels();
+    this.fetchHotelsAndRooms();
   }
-
-  fetchHotels(): void {
+  
+  fetchHotelsAndRooms(): void {
     this.hotelService.getAllHotels().subscribe(
       (hotelsData) => {
         this.hotels = hotelsData;
-
-        this.hotels.forEach((hotel, hotelIndex) => {
-          // Fetch rooms for each hotel
-          this.roomIds.forEach((roomId: string) => {
-            this.hotelService.getRoomsForHotel(hotel.id, roomId).subscribe(
-              (roomData) => {
-                // Initialize the rooms array if it doesn't exist
-                if (!this.hotels[hotelIndex].rooms) {
-                  this.hotels[hotelIndex].rooms = [];
-                }
-                this.hotels[hotelIndex].rooms.push(roomData);
-                console.log("Room data for hotel:", roomData);
-              },
-              (error) => console.error("Error fetching room for hotel:", error)
-            );
-          });
+        console.log("Hotels hotelsData:", hotelsData);
+  
+        // Initialize 'rooms' as an empty array for each hotel to safely push into later
+        this.hotels.forEach((hotel) => {
+          hotel.rooms = [];
+          console.log("Rooms forEach:", hotel);
         });
-
-        console.log("Hotels:", this.hotels);
+  
+        // Fetch all rooms and assign them to their respective hotels
+        this.roomService.getAllRooms().subscribe(
+          (roomsData) => {
+            // Here you need to implement logic to match rooms to hotels
+            // For demonstration purposes, let's say each room has a hotelId property
+            roomsData.forEach((room) => {
+              let hotel = this.hotels.find(h => h._id === room.hotelId);
+              if(hotel) {
+                hotel.rooms.push(room);
+                console.log("RoomsData forEach:", room);
+              }
+            });
+          },
+          (error) => console.error("Error fetching rooms:", error)
+        );
       },
       (error) => console.error("Error fetching hotels:", error)
     );
   }
+  
+  
+  
 
   fetchRoomsByHotelId(hotelId: string, roomId: string): void {
     this.hotelService.getRoomsForHotel(hotelId, roomId).subscribe(

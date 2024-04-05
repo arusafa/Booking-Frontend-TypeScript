@@ -1,28 +1,58 @@
 <div class="container mt-3">
   <h2 class="text-center mb-4">Room List</h2>
+  <div *ngIf="rooms.length; else noRooms" class="mt-6"></div>
   <div class="row">
     <div class="col-md-4" *ngFor="let option of rooms">
       <div class="card mb-4">
-        <div class="card-body">
-          <h5 class="card-title">{{ option.RoomName }}</h5>
-          <p class="card-text">
-            <img [src]="option.RoomImages" class="img-fluid" alt="Room Image">
-          </p>
-          <p class="card-text">
-            <strong>Room ID:</strong> {{ option.roomId }}<br>
-            <strong>Beds:</strong> {{ option.NumberOfBeds }} ({{ option.BedType }})<br>
-            <strong>Size:</strong> {{ option.SquareFeet }} sqft<br>
-            <strong>Amenities:</strong> {{ option.RoomAmenities }}
-          </p>
-          <div class="d-flex justify-content-between align-items-center">
-            <span class="text-primary"><strong>${{ option.Price }}</strong></span>
-            <div class="card-text">
-              <button class="btn btn-outline-primary m-1 btn-sm ml-1">Edit</button>
-              <button class="btn btn-outline-danger m-1 btn-sm ml-1">Delete</button>
+        <div class="card-header text-center">
+          <strong>Room ID:</strong> {{ option.roomId }}
+        </div>
+
+          <div class="card-body">
+            <h5 class="card-title">{{ option.RoomName }}</h5>
+            <p class="card-text">
+              <img
+                [src]="option.RoomImages"
+                class="img-fluid"
+                alt="Room Image"
+              />
+            </p>
+            <p class="card-text">
+              <strong>Beds:</strong> {{ option.NumberOfBeds }} ({{
+                option.BedType
+              }})<br />
+              <strong>Size:</strong> {{ option.SquareFeet }} sqft<br />
+              <strong>Amenities:</strong> {{ option.RoomAmenities }}
+            </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="text-primary"
+                ><strong>${{ option.Price }}</strong></span
+              >
+              <div class="card-text">
+                <a
+                  class="btn btn-outline-warning m-1 btn-sm ml-1"
+                  [routerLink]="['/update-room', option.roomId]"
+                  >Update Room</a
+                >
+                <a
+                  class="btn btn-outline-secondary m-1 btn-sm ml-1"
+                  [routerLink]="['/view-room', option.roomId]"
+                  >View Room</a
+                >
+                <button class="btn btn-outline-danger m-1 btn-sm ml-1">
+                  Delete
+                </button>
+              </div>
             </div>
-          </div>
         </div>
       </div>
     </div>
   </div>
+  <ng-template #noRooms>
+    <div class="text-center py-6">
+      <div class="alert alert-warning">
+        <p class="text-sm text-yellow-600">No Rooms found.</p>
+      </div>
+    </div>
+  </ng-template>
 </div>
