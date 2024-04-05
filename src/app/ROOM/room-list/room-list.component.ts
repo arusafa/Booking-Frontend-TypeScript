@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { RoomService } from "../room-services/room-services.service";
+import { RoomService } from "../../SERVICE/room-services/room-services.service";
+import { Room } from "../../INTERFACE/room.interface";
 
 @Component({
   selector: "app-room-list",
@@ -7,53 +8,26 @@ import { RoomService } from "../room-services/room-services.service";
   styleUrls: ["./room-list.component.css"],
 })
 export class RoomListComponent implements OnInit {
-  rooms: any[] = [];
+  rooms: Room[] = [];
 
   constructor(private roomService: RoomService) {}
 
   ngOnInit(): void {
     this.fetchRooms();
   }
-  formatAmenities(amenities: any): string {
-    // Convert the amenities object into a string list for display
-    return Object.entries(amenities)
-      .filter(([key, value]) => key !== "_id" && value) // Filter out the '_id' property and false values
-      .map(([key]) => key.replace(/([A-Z])/g, " $1").trim()) // Add space before capital letters for readability
-      .join(", "); // Join the array elements into a string separated by commas
-      
-  }
-
-  formatBedType(bedType: any): string {
-    // Convert the bedType object into a string list for display
-    return Object.entries(bedType)
-      .filter(([key, value]) => key !== "_id" && value) // Filter out the '_id' property and false values
-      .map(([key]) => key.replace(/([A-Z])/g, " $1").trim()) // Add space before capital letters for readability
-      .join(", "); // Join the array elements into a string separated by commas
+  getRoomId(room: any): string {
+    return room._id;
   }
 
   fetchRooms(): void {
     this.roomService.getAllRooms().subscribe({
-      next: (data) => {
-        this.rooms = data.map((room: any) => ({
-          roomId: room.roomId,
-          RoomName: room.RoomName,
-          SquareFeet: room.SquareFeet,
-          RoomAmenities: room.RoomAmenities || '',
-          BedType: room.BedType || '', 
-          RoomMeals: room.RoomMeals || '', 
-          RoomImages: room.RoomImages || '', 
-          NumberOfBeds: room.NumberOfBeds,
-          NumOfEmptyRooms: room.NumOfEmptyRooms,
-          Price: room.Price,
-          NumberOfGuests: room.NumberOfGuests,
-        }));
-        
-        console.log("Formatted Rooms Data:", this.rooms);
+      next: (data: any[]) => {
+        this.rooms = data;
+        console.log("Rooms fetched successfully:", this.rooms);
       },
       error: (error) => {
-        console.log("Error occurred while fetching room data:", error);
+        console.error("Error fetching room data:", error);
       },
     });
   }
-  
 }

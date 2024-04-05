@@ -3,9 +3,7 @@
     <div class="col-lg-10">
       <div class="card shadow-lg border-0">
         <div class="card-body">
-          <h2 class="text-center mb-5 font-weight-bold">
-            Add Hotel Details
-          </h2>
+          <h2 class="text-center mb-5 font-weight-bold">Add Hotel Details</h2>
           <form (ngSubmit)="onSubmit()">
             <div class="row">
               <!-- Left Column for Hotel Info -->
@@ -18,7 +16,7 @@
                     type="text"
                     class="form-control"
                     id="hotelName"
-                    [(ngModel)]="hotelName"
+                    [(ngModel)]="hotel.hotelName"
                     name="hotelName"
                     placeholder="Enter hotel name"
                     required
@@ -31,7 +29,7 @@
                   <textarea
                     class="form-control"
                     id="description"
-                    [(ngModel)]="hotelDescription.Description"
+                    [(ngModel)]="hotel.hotelDescription.Description"
                     name="description"
                     rows="4"
                     placeholder="Describe the hotel"
@@ -42,14 +40,17 @@
                 <div class="form-group">
                   <label>Images (URLs)</label>
                   <div
-                    *ngFor="let image of hotelDescription.Images; let i = index"
+                    *ngFor="
+                      let image of hotel.hotelDescription.Images;
+                      let i = index
+                    "
                     class="form-row align-items-center mb-2"
                   >
                     <div class="col">
                       <input
                         type="text"
                         class="form-control"
-                        [(ngModel)]="hotelDescription.Images[i]"
+                        [(ngModel)]="hotel.hotelDescription.Images[i]"
                         name="image{{ i }}"
                         placeholder="Enter Image URL"
                       />
@@ -59,7 +60,7 @@
                         type="button"
                         class="btn btn-danger"
                         (click)="removeImageField(i)"
-                        *ngIf="hotelDescription.Images.length > 1"
+                        *ngIf="hotel.hotelDescription.Images.length > 1"
                       >
                         Remove
                       </button>
@@ -67,34 +68,28 @@
                         type="button"
                         class="btn btn-primary"
                         (click)="addImageField()"
-                        *ngIf="i === hotelDescription.Images.length - 1"
+                        *ngIf="i === hotel.hotelDescription.Images.length - 1"
                       >
                         Add Another Image
                       </button>
                     </div>
                   </div>
                 </div>
-
-                <!-- Rooms Name Section with addRoom and deleteRoom -->
-
-
-
-                 <!-- Add and Cancel Buttons -->
-            <div class="text-center mt-4">
-              <button type="submit" class="btn btn-success">
-                Add Hotel
-              </button>
-              <button
-                (click)="cancel()"
-                type="button"
-                class="btn btn-danger ml-2"
-              >
-                Cancel
-              </button>
-            </div>
-
-
+                <!-- Add and Cancel Buttons -->
+                <div class="text-center mt-4">
+                  <button type="submit" class="btn btn-success">
+                    Add Hotel
+                  </button>
+                  <button
+                    (click)="cancel()"
+                    type="button"
+                    class="btn btn-danger ml-2"
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
+
               <!-- Right Column for Address and Amenities -->
               <div class="col-md-5 pl-md-6">
                 <h4 class="mb-2 text-center border-b font-weight-bold">
@@ -110,7 +105,7 @@
                         type="text"
                         class="form-control mr-2 m-1"
                         id="country"
-                        [(ngModel)]="hotelAddress.Country"
+                        [(ngModel)]="hotel.hotelAddress.Country"
                         name="country"
                         placeholder="Country"
                         required
@@ -122,7 +117,7 @@
                         type="text"
                         class="form-control mr-2 m-1"
                         id="city"
-                        [(ngModel)]="hotelAddress.City"
+                        [(ngModel)]="hotel.hotelAddress.City"
                         name="city"
                         placeholder="City"
                         required
@@ -138,7 +133,7 @@
                         type="text"
                         class="form-control mr-2 m-1"
                         id="province"
-                        [(ngModel)]="hotelAddress.Province"
+                        [(ngModel)]="hotel.hotelAddress.Province"
                         name="province"
                         placeholder="Province"
                         required
@@ -150,7 +145,7 @@
                         type="text"
                         class="form-control mr-2 m-1"
                         id="postalCode"
-                        [(ngModel)]="hotelAddress.PostalCode"
+                        [(ngModel)]="hotel.hotelAddress.PostalCode"
                         name="postalCode"
                         placeholder="Postal Code"
                         required
@@ -170,7 +165,7 @@
                             class="form-check-input"
                             type="checkbox"
                             id="pets"
-                            [(ngModel)]="hotelAmenities.Pets"
+                            [(ngModel)]="hotel.hotelAmenities.Pets"
                             name="pets"
                           />
                           <label class="form-check-label" for="pets"
@@ -184,7 +179,7 @@
                               class="form-check-input"
                               type="checkbox"
                               id="gym"
-                              [(ngModel)]="hotelAmenities.Gym"
+                              [(ngModel)]="hotel.hotelAmenities.Gym"
                               name="gym"
                             />
                             <label class="form-check-label" for="gym"
@@ -201,7 +196,7 @@
                             class="form-check-input m-1"
                             type="checkbox"
                             id="airportShuttle"
-                            [(ngModel)]="hotelAmenities.AirportShuttle"
+                            [(ngModel)]="hotel.hotelAmenities.AirportShuttle"
                             name="airportShuttle"
                           />
                           <label class="form-check-label" for="airportShuttle"
@@ -214,7 +209,7 @@
                             class="form-check-input m-1"
                             type="checkbox"
                             id="pool"
-                            [(ngModel)]="hotelAmenities.Pool"
+                            [(ngModel)]="hotel.hotelAmenities.Pool"
                             name="pool"
                           />
                           <label class="form-check-label" for="pool"
@@ -225,80 +220,30 @@
                     </div>
                   </div>
 
-                  <!-- HotelRating and AirportDistance -->
-                  <div class="d-flex form-row">
-                    <div class="form-group mt-4">
-                      <label for="hotelRating" class="font-weight-bold"
-                        >Hotel Rating</label
-                      >
-                      <input
-                        type="number"
-                        class="form-control mr-4"
-                        id="hotelRating"
-                        [(ngModel)]="hotelRating"
-                        name="hotelRating"
-                        placeholder="0-5"
-                        min="0"
-                        max="5"
-                        step="0.1"
-                        required
-                      />
-                    </div>
-
-                    <div class="form-group mt-4">
-                      <label class="ml-7" for="airportDistance"
-                        >Airport Distance</label
-                      >
-                      <input
-                        type="text"
-                        class="form-control ml-7"
-                        id="airportDistance"
-                        [(ngModel)]="hotelDetails.AirportDistance"
-                        name="airportDistance"
-                        placeholder="Airport Distance"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <!-- Downtown and Sea Distance -->
-                  <div class="d-flex form-row">
-                    <div class="form-group mt-5">
-                      <label for="downtownDistance">Downtown Distance</label>
-                      <input
-                        type="text"
-                        class="form-control mr-4"
-                        id="downtownDistance"
-                        [(ngModel)]="hotelDetails.DowntownDistance"
-                        name="downtownDistance"
-                        placeholder="Downtown Distance"
-                        required
-                      />
-                    </div>
-
-                    <div class="form-group mt-5">
-                      <label class="ml-7" for="seaDistance">Sea Distance</label>
-                      <input
-                        type="text"
-                        class="form-control ml-7"
-                        id="seaDistance"
-                        [(ngModel)]="hotelDetails.SeaDistance"
-                        name="seaDistance"
-                        placeholder="Sea Distance"
-                        required
-                      />
-                    </div>
+                  <!-- HotelRating -->
+                  <div class="form-group mt-4">
+                    <label for="hotelRating" class="font-weight-bold"
+                      >Hotel Rating</label
+                    >
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="hotelRating"
+                      [(ngModel)]="hotel.hotelRating"
+                      name="hotelRating"
+                      placeholder="0-5"
+                      min="0"
+                      max="5"
+                      step="0.1"
+                      required
+                    />
                   </div>
                 </div>
               </div>
-              
             </div>
-
-           
           </form>
         </div>
       </div>
     </div>
   </div>
 </div>
-

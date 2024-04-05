@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { HotelService } from "../hotel-services/hotel.service";
+import { HotelService } from "../../SERVICE/hotel-services/hotel.service";
 
 @Component({
   selector: "app-update-hotel",

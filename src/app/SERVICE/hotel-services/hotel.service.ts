@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Router } from "@angular/router";
+import { Hotel } from "../../INTERFACE/hotel.interface";
 
 @Injectable({
   providedIn: "root",

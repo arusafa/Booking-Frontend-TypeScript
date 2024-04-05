@@ -2,32 +2,38 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
+import { FormatListPipe } from "../../pipes/format-list.pipe";
+import { Room } from "../../INTERFACE/room.interface";
 
 @Injectable({
   providedIn: "root",
 })
 export class RoomService {
   private baseUrl = "https://booking-backend-seven.vercel.app/admin/room";
+  formatListPipe = new FormatListPipe();
 
   constructor(private http: HttpClient) {}
 
-  getAllRooms(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/allRooms`).pipe(
-      map((data) => {
-        // Flatten the room options and format amenities and bed types
-        return data
-          .map((room: any) =>
-            room.RoomOptions.map((option: any) => ({
-              roomId: room._id,
-              ...option,
-              RoomAmenities: this.formatAmenities(option.RoomAmenities),
-              BedType: this.formatBedType(option.BedType),
-            }))
-          )
-          .flat();
-      })
+  createRoom(roomData: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/newRoom`, roomData);
+  }
+
+  getAllRooms(): Observable<Room[]> {
+    return this.http.get<any>(`${this.baseUrl}/allRooms`).pipe(
+      map((rooms) =>
+        rooms.map((room: any) => ({
+          ...room,
+          RoomOptions: room.RoomOptions.map((option: any) => ({
+            ...option,
+            RoomAmenities: this.formatListPipe.transform(option.RoomAmenities),
+            BedType: this.formatListPipe.transform(option.BedType),
+            RoomMeals: this.formatListPipe.transform(option.RoomMeals),
+          })),
+        }))
+      )
     );
   }
+
   getRoomById(roomId: string): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/${roomId}`).pipe(
       map((room) => ({
@@ -35,8 +41,7 @@ export class RoomService {
         ...room,
         RoomAmenities: this.formatAmenities(room.RoomAmenities),
         BedType: this.formatBedType(room.BedType),
-      })
-      )
+      }))
     );
   }
 

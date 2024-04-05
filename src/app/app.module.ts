@@ -1,33 +1,34 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { AppComponent } from "../app-compponent/app.component";
+import { AppComponent } from "./Admin&Routes&APP_component/app-compponent/app.component";
 import { FormsModule } from "@angular/forms";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
-import { AppRoutingModule } from "./app-routing.module";
+import { AppRoutingModule } from "./Admin&Routes&APP_component/App-routes/app-routing.module";
+import { FormatListPipe } from "./pipes/format-list.pipe";
 
 // Auth imports
-import { AdminAuthGuardService } from "../ADMIN/admin-guard/admin-auth-guard.service";
-import { AuthGuard } from "../ADMIN/guard/auth.guard";
-import { LoginComponent } from "../login/login.component";
-import { SignupComponent } from "../signup/signup.component";
-import { DashboardComponent } from "../dashboard/dashboard.component";
+import { AdminAuthGuardService } from "./Admin&Routes&APP_component/ADMIN/admin-guard/admin-auth-guard.service";
+import { AuthGuard } from "./Admin&Routes&APP_component/ADMIN/guard/auth.guard";
+import { LoginComponent } from "./Admin&Routes&APP_component/login/login.component";
+import { SignupComponent } from "./Admin&Routes&APP_component/signup/signup.component";
+import { DashboardComponent } from "./Admin&Routes&APP_component/dashboard/dashboard.component";
 
 // Hotel imports
-import { CreateHotelComponent } from "../../HOTEL/create-hotel/create-hotel.component";
-import { HotelListComponent } from "../../HOTEL/hotel-list/hotel-list.component";
-import { UpdateHotelComponent } from "../../HOTEL/update-hotel/update-hotel.component";
+import { CreateHotelComponent } from "./HOTEL/create-hotel/create-hotel.component";
+import { HotelListComponent } from "./HOTEL/hotel-list/hotel-list.component";
+import { UpdateHotelComponent } from "./HOTEL/update-hotel/update-hotel.component";
 // Hotel Room imports
-import { AddRoomToHotelComponent } from "../../HOTEL/add-room-to-hotel/add-room-to-hotel.component";
+import { AddRoomToHotelComponent } from "./HOTEL/add-room-to-hotel/add-room-to-hotel.component";
 
 // Room imports
-import { CreateRoomComponent } from "../../ROOM/create-room/create-room.component";
-import { RoomListComponent } from "../../ROOM/room-list/room-list.component";
-import { UpdateRoomComponent } from "../../ROOM/update-room/update-room.component";
-import { ViewRoomComponent } from "../../ROOM/view-room/view-room.component";
-import { HotelRoomsComponent } from "../../HOTEL/hotel-rooms/hotel-rooms.component";
+import { CreateRoomComponent } from "./ROOM/create-room/create-room.component";
+import { RoomListComponent } from "./ROOM/room-list/room-list.component";
+import { UpdateRoomComponent } from "./ROOM/update-room/update-room.component";
+import { HotelRoomsComponent } from "./HOTEL/hotel-rooms/hotel-rooms.component";
+import { ViewRoomComponent } from "./ROOM/view-room/view-room.component";
 
 // Define application routes here
 const appRoutes: Routes = [
@@ -100,6 +101,7 @@ const appRoutes: Routes = [
     AddRoomToHotelComponent,
     ViewRoomComponent,
     UpdateRoomComponent,
+    FormatListPipe
   ],
   imports: [
     BrowserModule,
