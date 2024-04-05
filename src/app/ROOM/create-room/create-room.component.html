@@ -1,258 +1,275 @@
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-10">
-      <div class="card shadow-lg border-0 rounded">
-        <div class="card-body">
-          <h2 class="text-center mb-5 font-weight-bold">Create New Room</h2>
-          <form (ngSubmit)="onSubmit()">
-            <div *ngFor="let option of room.RoomOptions; let oi = index">
-              <h4 class="mt-4 mb-3">Room Option {{ oi + 1 }}</h4>
-
-              <div class="form-group">
-                <label for="roomName{{ oi }}">Room Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="roomName{{ oi }}"
-                  required
-                  [(ngModel)]="option.RoomName"
-                  name="RoomName{{ oi }}"
-                  placeholder="Enter room name"
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="squareFeet{{ oi }}">Size (sqft)</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  id="squareFeet{{ oi }}"
-                  [(ngModel)]="option.SquareFeet"
-                  name="SquareFeet{{ oi }}"
-                  placeholder="Enter room size in square feet"
-                />
-              </div>
-
-              <div class="form-group">
-                <label>Room Amenities:</label>
-                <div class="checkbox-group">
-                  <label class="form-check-label">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      [(ngModel)]="option.RoomAmenities.Wifi"
-                      name="Wifi{{ oi }}"
-                    />
-                    Wifi
-                  </label>
-                  <label class="form-check-label">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      [(ngModel)]="option.RoomAmenities.CableTv"
-                      name="CableTv{{ oi }}"
-                    />
-                    Cable TV
-                  </label>
-                  <label class="form-check-label">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      [(ngModel)]="option.RoomAmenities.AirCondition"
-                      name="AirCondition{{ oi }}"
-                    />
-                    Air Condition
-                  </label>
-                  <label class="form-check-label">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      [(ngModel)]="option.RoomAmenities.FreeCancellation"
-                      name="FreeCancellation{{ oi }}"
-                    />
-                    Free Cancellation
-                  </label>
-                  <label class="form-check-label">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      [(ngModel)]="option.RoomAmenities.NonSmoking"
-                      name="NonSmoking{{ oi }}"
-                    />
-                    Non Smoking
-                  </label>
+<div class="container mx-auto mt-10">
+  <div class="flex justify-center">
+    <div class="w-full lg:w-3/4 xl:w-1/2">
+      <div class="bg-white shadow-xl rounded-lg p-6">
+        <h2 class="text-center text-3xl font-semibold text-gray-800 mb-6">
+          Create New Room
+        </h2>
+        <form (ngSubmit)="onSubmit()">
+          <div *ngFor="let option of room.RoomOptions; let oi = index">
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <!-- Left Column for Room Name,Size,NumbOfBeds,Price(perNight) -->
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <div class="mb-4">
+                  <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="roomName{{ oi }}"
+                    >Room Name</label
+                  >
+                  <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="roomName{{ oi }}"
+                    type="text"
+                    required
+                    [(ngModel)]="option.RoomName"
+                    name="RoomName{{ oi }}"
+                    placeholder="Enter room name"
+                  />
+                </div>
+                <div class="mb-4">
+                  <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="squareFeet{{ oi }}"
+                    >Size (sqft)</label
+                  >
+                  <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="squareFeet{{ oi }}"
+                    type="number"
+                    [(ngModel)]="option.SquareFeet"
+                    name="SquareFeet{{ oi }}"
+                    placeholder="Enter room size in square feet"
+                  />
+                </div>
+                <div class="mb-4">
+                  <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="numberOfBeds{{ oi }}"
+                    >Number of Beds</label
+                  >
+                  <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="numberOfBeds{{ oi }}"
+                    type="number"
+                    [(ngModel)]="option.NumberOfBeds"
+                    name="NumberOfBeds{{ oi }}"
+                    placeholder="Enter the number of beds"
+                  />
+                </div>
+                <div class="mb-4">
+                  <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="Price{{ oi }}"
+                    >Price</label
+                  >
+                  <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="Price{{ oi }}"
+                    type="number"
+                    [(ngModel)]="option.Price"
+                    name="Price{{ oi }}"
+                    placeholder="Enter the price for the room"
+                  />
+                </div>
+                <div class="mb-4">
+                  <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="NumberOfGuests{{ oi }}"
+                    >Number of Guests</label
+                  >
+                  <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="NumberOfGuests{{ oi }}"
+                    type="number"
+                    [(ngModel)]="option.NumberOfGuests"
+                    name="NumberOfGuests{{ oi }}"
+                    placeholder="Enter the number of guests"
+                  />
                 </div>
               </div>
 
-              <div class="form-group">
-                <label>Room Meals:</label>
-                <div class="checkbox-group">
-                  <label class="form-check-label">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      [(ngModel)]="option.RoomMeals.Breakfast"
-                      name="Breakfast{{ oi }}"
-                    />
-                    Breakfast
-                  </label>
-                  <label class="form-check-label">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      [(ngModel)]="option.RoomMeals.Dinner"
-                      name="Dinner{{ oi }}"
-                    />
-                    Dinner
-                  </label>
-                  <label class="form-check-label">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      [(ngModel)]="option.RoomMeals.BreakfastAndDinner"
-                      name="BreakfastAndDinner{{ oi }}"
-                    />
-                    Breakfast and Dinner
-                  </label>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="roomImages{{ oi }}">Room Images (URLs):</label>
-                <ng-container
-                  *ngFor="
-                    let image of option.RoomImages;
-                    let ii = index;
-                    trackBy: trackByFn
-                  "
-                >
-                  <div class="input-group mb-2">
-                    <input
-                      type="text"
-                      class="form-control"
-                      [(ngModel)]="option.RoomImages[ii]"
-                      name="image{{ oi }}{{ ii }}"
-                      placeholder="Enter image URL"
-                    />
-                    <div class="input-group-append">
-                      <button
-                        type="button"
-                        class="btn btn-danger"
-                        (click)="removeImageField(oi, ii)"
-                      >
-                        Remove
-                      </button>
-                    </div>
+              <!-- Right Column for Amenities, Meals, Bed Types, Number of Guests -->
+              <div class="w-full md:w-1/2 px-3">
+                <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2"
+                    >Room Amenities:</label
+                  >
+                  <div class="flex flex-wrap">
+                    <label class="inline-flex items-center mr-4"
+                      ><input
+                        class="form-checkbox text-indigo-600"
+                        type="checkbox"
+                        [(ngModel)]="option.RoomAmenities.Wifi"
+                        name="Wifi{{ oi }}"
+                      /><span class="ml-2">Wifi</span></label
+                    >
+                    <label class="inline-flex items-center mr-4"
+                      ><input
+                        class="form-checkbox text-indigo-600"
+                        type="checkbox"
+                        [(ngModel)]="option.RoomAmenities.CableTv"
+                        name="CableTv{{ oi }}"
+                      /><span class="ml-2">Cable TV</span></label
+                    >
+                    <label class="inline-flex items-center mr-4"
+                      ><input
+                        class="form-checkbox text-indigo-600"
+                        type="checkbox"
+                        [(ngModel)]="option.RoomAmenities.AirCondition"
+                        name="AirCondition{{ oi }}"
+                      /><span class="ml-2">Air Condition</span></label
+                    >
+                    <label class="inline-flex items-center mr-4"
+                      ><input
+                        class="form-checkbox text-indigo-600"
+                        type="checkbox"
+                        [(ngModel)]="option.RoomAmenities.FreeCancellation"
+                        name="FreeCancellation{{ oi }}"
+                      /><span class="ml-2">Free Cancellation</span></label
+                    >
+                    <label class="inline-flex items-center mr-4"
+                      ><input
+                        class="form-checkbox text-indigo-600"
+                        type="checkbox"
+                        [(ngModel)]="option.RoomAmenities.NonSmoking"
+                        name="NonSmoking{{ oi }}"
+                      /><span class="ml-2">Non Smoking</span></label
+                    >
                   </div>
-                </ng-container>
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  (click)="addImageField(oi)"
-                >
-                  Add Image
-                </button>
-              </div>
+                </div>
 
-              <div class="form-group">
-                <label for="numberOfBeds{{ oi }}">Number of Beds</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  id="numberOfBeds{{ oi }}"
-                  [(ngModel)]="option.NumberOfBeds"
-                  name="NumberOfBeds{{ oi }}"
-                  placeholder="Enter the number of beds"
-                />
-              </div>
-
-              <div class="form-group">
-                <label>Bed Types:</label>
-                <div class="checkbox-group">
-                  <label class="form-check-label">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      [(ngModel)]="option.BedType.SingleBed"
-                      name="SingleBed{{ oi }}"
-                    />
-                    Single Bed
-                  </label>
-                  <label class="form-check-label">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      [(ngModel)]="option.BedType.TwinBed"
-                      name="TwinBed{{ oi }}"
-                    />
-                    Twin Bed
-                  </label>
-                  <label class="form-check-label">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      [(ngModel)]="option.BedType.QueenBed"
-                      name="QueenBed{{ oi }}"
-                    />
-                    Queen Bed
-                  </label>
-                  <label class="form-check-label">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      [(ngModel)]="option.BedType.KingBed"
-                      name="KingBed{{ oi }}"
-                    />
-                    King Bed
-                  </label>
+                <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2"
+                    >Bed Types:</label
+                  >
+                  <div class="flex flex-wrap">
+                    <label class="inline-flex items-center mr-4"
+                      ><input
+                        class="form-checkbox text-pink-500"
+                        type="checkbox"
+                        [(ngModel)]="option.BedType.SingleBed"
+                        name="SingleBed{{ oi }}"
+                      /><span class="ml-2">Single Bed</span></label
+                    >
+                    <label class="inline-flex items-center mr-4"
+                      ><input
+                        class="form-checkbox text-pink-500"
+                        type="checkbox"
+                        [(ngModel)]="option.BedType.TwinBed"
+                        name="TwinBed{{ oi }}"
+                      /><span class="ml-2">Twin Bed</span></label
+                    >
+                    <label class="inline-flex items-center mr-4"
+                      ><input
+                        class="form-checkbox text-pink-500"
+                        type="checkbox"
+                        [(ngModel)]="option.BedType.QueenBed"
+                        name="QueenBed{{ oi }}"
+                      /><span class="ml-2">Queen Bed</span></label
+                    >
+                    <label class="inline-flex items-center mr-4"
+                      ><input
+                        class="form-checkbox text-pink-500"
+                        type="checkbox"
+                        [(ngModel)]="option.BedType.KingBed"
+                        name="KingBed{{ oi }}"
+                      /><span class="ml-2">King Bed</span></label
+                    >
+                  </div>
+                </div>
+                <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2"
+                    >Room Meals:</label
+                  >
+                  <div class="flex flex-wrap">
+                    <label class="inline-flex items-center mr-4"
+                      ><input
+                        class="form-checkbox text-green-500"
+                        type="checkbox"
+                        [(ngModel)]="option.RoomMeals.Breakfast"
+                        name="Breakfast{{ oi }}"
+                      /><span class="ml-2">Breakfast</span></label
+                    >
+                    <label class="inline-flex items-center mr-4"
+                      ><input
+                        class="form-checkbox text-green-500"
+                        type="checkbox"
+                        [(ngModel)]="option.RoomMeals.Dinner"
+                        name="Dinner{{ oi }}"
+                      /><span class="ml-2">Dinner</span></label
+                    >
+                    <label class="inline-flex items-center mr-4"
+                      ><input
+                        class="form-checkbox text-green-500"
+                        type="checkbox"
+                        [(ngModel)]="option.RoomMeals.BreakfastAndDinner"
+                        name="BreakfastAndDinner{{ oi }}"
+                      /><span class="ml-2">Breakfast & Dinner</span></label
+                    >
+                  </div>
                 </div>
               </div>
-
-              <div class="form-group">
-                <label for="NumberOfGuests{{ oi }}">Number of Guests</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  id="NumberOfGuests{{ oi }}"
-                  [(ngModel)]="option.NumberOfGuests"
-                  name="NumberOfGuests{{ oi }}"
-                  placeholder="Enter the number of guests"
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="NumOfEmptyRooms{{ oi }}"
-                  >Number Of Empty Rooms</label
-                >
-                <input
-                  type="number"
-                  class="form-control"
-                  id="NumOfEmptyRooms{{ oi }}"
-                  [(ngModel)]="option.NumOfEmptyRooms"
-                  name="NumOfEmptyRooms{{ oi }}"
-                  placeholder="Enter the number of empty rooms available"
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="Price{{ oi }}">Price</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  id="Price{{ oi }}"
-                  [(ngModel)]="option.Price"
-                  name="Price{{ oi }}"
-                  placeholder="Enter the price for the room"
-                />
-              </div>
-              <hr />
             </div>
 
-            <div class="text-center">
-              <button type="submit" class="btn btn-success">Create Room</button>
+            <!-- Room Images -->
+            <div class="mb-4">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+                for="roomImages{{ oi }}"
+                >Room Images (URLs):</label
+              >
+              <ng-container
+                *ngFor="let image of option.RoomImages; let ii = index"
+              >
+                <div class="flex items-center mb-2">
+                  <input
+                    class="shadow appearance-none border rounded flex-1 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    type="text"
+                    [(ngModel)]="option.RoomImages[ii]"
+                    name="image{{ ii }}"
+                    placeholder="Enter image URL"
+                  />
+                  <button
+                    type="button"
+                    class="ml-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    (click)="removeImageField(oi, ii)"
+                    *ngIf="option.RoomImages.length > 1"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </ng-container>
+              <button
+                type="button"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                (click)="addImageField(oi)"
+              >
+                Add Image
+              </button>
             </div>
-          </form>
-        </div>
+
+            <hr class="mb-6" />
+          </div>
+          <!-- Add Room Button -->
+          <div class="inline-flex items-center mr-4">
+            <div class="text-center mr-4">
+              <button
+                type="submit"
+                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              >
+                Create Room
+              </button>
+            </div>
+            <div class="text-center mr-4">
+              <button
+                type="reset"
+                class="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              >
+                Clear Form
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
