@@ -15,8 +15,21 @@ export class RoomService {
   constructor(private http: HttpClient) {}
 
   createRoom(roomData: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/newRoom`, roomData);
-  }
+    const token = localStorage.getItem("token");
+    if (!token) {
+      throw new Error("Token not available");
+    }
+
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`);
+    return this.http.post(`${this.baseUrl}/newRoom`, roomData, { headers });
+}
+
+
+
+
+
+
+
 
   getAllRooms(): Observable<Room[]> {
     return this.http.get<any>(`${this.baseUrl}/allRooms`).pipe(

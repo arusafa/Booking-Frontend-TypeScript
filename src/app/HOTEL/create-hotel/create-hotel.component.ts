@@ -70,11 +70,4 @@ export class CreateHotelComponent {
   addRoom(room: Room): void {
     this.hotel.rooms.push(room);
   }
-
-  removeRoom(roomId: string): void {
-    const index = this.hotel.rooms.findIndex((room) => this.getRoom_Id(room) === roomId);
-    if (index !== -1) {
-      this.hotel.rooms.splice(index, 1);
-    }
-  }
 }

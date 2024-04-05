@@ -45,17 +45,19 @@ export class CreateRoomComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSubmit(form: NgForm): void {
-    this.roomService.createRoom(this.room).subscribe({
-      next: (data) => {
-        console.log('Room created successfully:', data);
-        this.router.navigate(['/room-list']);
+  onSubmit(): void {
+    this.roomService.createRoom(this.room).subscribe(
+      (response) => {
+        console.log("Room created successfully:", response);
+        this.router.navigate(["/room-list"]);
       },
-      error: (error) => {
-        console.error('Error occurred while creating room:', error);
-      },
-    });
+      (error) => {
+        console.error("Error occurred while creating room:", error);
+      }
+    );
   }
+
+
   trackByFn(index: any, item: any) {
     return index;
   }

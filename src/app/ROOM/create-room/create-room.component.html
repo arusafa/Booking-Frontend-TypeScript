@@ -1,10 +1,10 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-lg-10">
-      <div class="card shadow-lg border-0">
+      <div class="card shadow-lg border-0 rounded">
         <div class="card-body">
           <h2 class="text-center mb-5 font-weight-bold">Create New Room</h2>
-          <form #roomForm="ngForm" (ngSubmit)="onSubmit(roomForm)">
+          <form (ngSubmit)="onSubmit()">
             <div *ngFor="let option of room.RoomOptions; let oi = index">
               <h4 class="mt-4 mb-3">Room Option {{ oi + 1 }}</h4>
 
@@ -15,8 +15,9 @@
                   class="form-control"
                   id="roomName{{ oi }}"
                   required
-                  [(ngModel)]="room.RoomOptions[oi].RoomName"
+                  [(ngModel)]="option.RoomName"
                   name="RoomName{{ oi }}"
+                  placeholder="Enter room name"
                 />
               </div>
 
@@ -26,173 +27,132 @@
                   type="number"
                   class="form-control"
                   id="squareFeet{{ oi }}"
-                  [(ngModel)]="room.RoomOptions[oi].SquareFeet"
+                  [(ngModel)]="option.SquareFeet"
                   name="SquareFeet{{ oi }}"
+                  placeholder="Enter room size in square feet"
                 />
               </div>
 
-              <!-- Room Amenities as Checkboxes -->
               <div class="form-group">
                 <label>Room Amenities:</label>
-
-                <div class="d-flex m-1">
-                  <div class="form-check">
+                <div class="checkbox-group">
+                  <label class="form-check-label">
                     <input
                       class="form-check-input"
                       type="checkbox"
-                      id="wifi{{ oi }}"
-                      [(ngModel)]="room.RoomOptions[oi].RoomAmenities.Wifi"
+                      [(ngModel)]="option.RoomAmenities.Wifi"
                       name="Wifi{{ oi }}"
                     />
-                    <label class="form-check-label" for="wifi{{ oi }}"
-                      >Wifi</label
-                    >
-
-                    <div>
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="CableTv{{ oi }}"
-                        [(ngModel)]="room.RoomOptions[oi].RoomAmenities.CableTv"
-                        name="CableTv{{ oi }}"
-                      />
-                      <label class="form-check-label" for="CableTv{{ oi }}"
-                        >CableTv</label
-                      >
-                    </div>
-
-                    <div>
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="AirCondition{{ oi }}"
-                        [(ngModel)]="
-                          room.RoomOptions[oi].RoomAmenities.AirCondition
-                        "
-                        name="AirCondition{{ oi }}"
-                      />
-                      <label class="form-check-label" for="AirCondition{{ oi }}"
-                        >Air Condition</label
-                      >
-                    </div>
-
-                    <div>
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="FreeCancellation{{ oi }}"
-                        [(ngModel)]="
-                          room.RoomOptions[oi].RoomAmenities.FreeCancellation
-                        "
-                        name="FreeCancellation{{ oi }}"
-                      />
-                      <label
-                        class="form-check-label"
-                        for="FreeCancellation{{ oi }}"
-                        >Free Cancellation</label
-                      >
-                    </div>
-
-                    <div>
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="NonSmoking{{ oi }}"
-                        [(ngModel)]="
-                          room.RoomOptions[oi].RoomAmenities.NonSmoking
-                        "
-                        name="NonSmoking{{ oi }}"
-                      />
-                      <label class="form-check-label" for="NonSmoking{{ oi }}"
-                        >Non Smoking</label
-                      >
-                    </div>
-                  </div>
-
-                  <!-- Room Meals as Checkboxes -->
-                  <div class="form-group ml-10">
-                    <label>Room Meals:</label>
-
-                    <div class="form-group">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="Breakfast{{ oi }}"
-                        [(ngModel)]="room.RoomOptions[oi].RoomMeals.Breakfast"
-                        name="Breakfast{{ oi }}"
-                      />
-                      <label class="form-check-label" for="Breakfast{{ oi }}"
-                        >Breakfast</label
-                      >
-                    </div>
-                    <div class="form-group">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="Dinner{{ oi }}"
-                        [(ngModel)]="room.RoomOptions[oi].RoomMeals.Dinner"
-                        name="Dinner{{ oi }}"
-                      />
-                      <label class="form-check-label" for="Dinner{{ oi }}"
-                        >Dinner</label
-                      >
-                    </div>
-                    <div class="form-group">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="BreakfastAndDinner{{ oi }}"
-                        [(ngModel)]="
-                          room.RoomOptions[oi].RoomMeals.BreakfastAndDinner
-                        "
-                        name="BreakfastAndDinner{{ oi }}"
-                      />
-                      <label
-                        class="form-check-label"
-                        for="BreakfastAndDinner{{ oi }}"
-                        >Breakfast And Dinner</label
-                      >
-                    </div>
-                  </div>
+                    Wifi
+                  </label>
+                  <label class="form-check-label">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [(ngModel)]="option.RoomAmenities.CableTv"
+                      name="CableTv{{ oi }}"
+                    />
+                    Cable TV
+                  </label>
+                  <label class="form-check-label">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [(ngModel)]="option.RoomAmenities.AirCondition"
+                      name="AirCondition{{ oi }}"
+                    />
+                    Air Condition
+                  </label>
+                  <label class="form-check-label">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [(ngModel)]="option.RoomAmenities.FreeCancellation"
+                      name="FreeCancellation{{ oi }}"
+                    />
+                    Free Cancellation
+                  </label>
+                  <label class="form-check-label">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [(ngModel)]="option.RoomAmenities.NonSmoking"
+                      name="NonSmoking{{ oi }}"
+                    />
+                    Non Smoking
+                  </label>
                 </div>
               </div>
 
-              <!-- Room Images -->
-              <!-- Room Images Section -->
-<div class="form-group">
-  <label>Room Images (URLs):</label>
-  <ng-container *ngFor="let image of option.RoomImages; let ii = index; trackBy: trackByFn">
-    <div class="form-row align-items-center mb-2">
-      <div class="col-10">
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="option.RoomImages[ii]"
-          name="image{{ oi }}{{ ii }}"
-          placeholder="Enter Image URL"
-        />
-      </div>
-      <div class="col">
-        <button
-          type="button"
-          class="btn btn-danger"
-          (click)="removeImageField(oi, ii)"
-          *ngIf="option.RoomImages.length > 1"
-        >
-          Remove
-        </button>
-      </div>
-    </div>
-  </ng-container>
-  <button
-    type="button"
-    class="btn btn-primary"
-    (click)="addImageField(oi)"
-  >
-    Add Image
-  </button>
-</div>
+              <div class="form-group">
+                <label>Room Meals:</label>
+                <div class="checkbox-group">
+                  <label class="form-check-label">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [(ngModel)]="option.RoomMeals.Breakfast"
+                      name="Breakfast{{ oi }}"
+                    />
+                    Breakfast
+                  </label>
+                  <label class="form-check-label">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [(ngModel)]="option.RoomMeals.Dinner"
+                      name="Dinner{{ oi }}"
+                    />
+                    Dinner
+                  </label>
+                  <label class="form-check-label">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [(ngModel)]="option.RoomMeals.BreakfastAndDinner"
+                      name="BreakfastAndDinner{{ oi }}"
+                    />
+                    Breakfast and Dinner
+                  </label>
+                </div>
+              </div>
 
+              <div class="form-group">
+                <label for="roomImages{{ oi }}">Room Images (URLs):</label>
+                <ng-container
+                  *ngFor="
+                    let image of option.RoomImages;
+                    let ii = index;
+                    trackBy: trackByFn
+                  "
+                >
+                  <div class="input-group mb-2">
+                    <input
+                      type="text"
+                      class="form-control"
+                      [(ngModel)]="option.RoomImages[ii]"
+                      name="image{{ oi }}{{ ii }}"
+                      placeholder="Enter image URL"
+                    />
+                    <div class="input-group-append">
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        (click)="removeImageField(oi, ii)"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                </ng-container>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  (click)="addImageField(oi)"
+                >
+                  Add Image
+                </button>
+              </div>
 
               <div class="form-group">
                 <label for="numberOfBeds{{ oi }}">Number of Beds</label>
@@ -200,33 +160,63 @@
                   type="number"
                   class="form-control"
                   id="numberOfBeds{{ oi }}"
-                  [(ngModel)]="room.RoomOptions[oi].NumberOfBeds"
+                  [(ngModel)]="option.NumberOfBeds"
                   name="NumberOfBeds{{ oi }}"
+                  placeholder="Enter the number of beds"
                 />
               </div>
 
               <div class="form-group">
-                <select
-                  title="Bed Type"
-                  class="form-control"
-                  [(ngModel)]="room.RoomOptions[oi].BedType"
-                  name="BedType{{ oi }}"
-                >
-                  <option value="Single">Single</option>
-                  <option value="Double">TwinBed</option>
-                  <option value="Queen">Queen</option>
-                  <option value="King">King</option>
-                </select>
+                <label>Bed Types:</label>
+                <div class="checkbox-group">
+                  <label class="form-check-label">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [(ngModel)]="option.BedType.SingleBed"
+                      name="SingleBed{{ oi }}"
+                    />
+                    Single Bed
+                  </label>
+                  <label class="form-check-label">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [(ngModel)]="option.BedType.TwinBed"
+                      name="TwinBed{{ oi }}"
+                    />
+                    Twin Bed
+                  </label>
+                  <label class="form-check-label">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [(ngModel)]="option.BedType.QueenBed"
+                      name="QueenBed{{ oi }}"
+                    />
+                    Queen Bed
+                  </label>
+                  <label class="form-check-label">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [(ngModel)]="option.BedType.KingBed"
+                      name="KingBed{{ oi }}"
+                    />
+                    King Bed
+                  </label>
+                </div>
               </div>
 
               <div class="form-group">
-                <label for="NumberOfGuests{{ oi }}">Number of Guest</label>
+                <label for="NumberOfGuests{{ oi }}">Number of Guests</label>
                 <input
                   type="number"
                   class="form-control"
                   id="NumberOfGuests{{ oi }}"
-                  [(ngModel)]="room.RoomOptions[oi].NumberOfGuests"
+                  [(ngModel)]="option.NumberOfGuests"
                   name="NumberOfGuests{{ oi }}"
+                  placeholder="Enter the number of guests"
                 />
               </div>
 
@@ -238,8 +228,9 @@
                   type="number"
                   class="form-control"
                   id="NumOfEmptyRooms{{ oi }}"
-                  [(ngModel)]="room.RoomOptions[oi].NumOfEmptyRooms"
+                  [(ngModel)]="option.NumOfEmptyRooms"
                   name="NumOfEmptyRooms{{ oi }}"
+                  placeholder="Enter the number of empty rooms available"
                 />
               </div>
 
@@ -249,14 +240,17 @@
                   type="number"
                   class="form-control"
                   id="Price{{ oi }}"
-                  [(ngModel)]="room.RoomOptions[oi].Price"
+                  [(ngModel)]="option.Price"
                   name="Price{{ oi }}"
+                  placeholder="Enter the price for the room"
                 />
               </div>
-
               <hr />
             </div>
-            <button type="submit" class="btn btn-success">Create Room</button>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-success">Create Room</button>
+            </div>
           </form>
         </div>
       </div>
