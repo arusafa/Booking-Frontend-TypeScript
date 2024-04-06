@@ -81,7 +81,7 @@ const appRoutes: Routes = [
     canActivate: [AdminAuthGuardService],
   },
   {
-    path: "view-rooms/:id",
+    path: "view-rooms/:hotelId",
     component: HotelRoomsComponent,
     canActivate: [AdminAuthGuardService],
   },
@@ -90,17 +90,25 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [
+    //Auth components
     AppComponent,
-    LoginComponent,
     SignupComponent,
-    HotelListComponent,
+    LoginComponent,
+    //Hotel components
     CreateHotelComponent,
     UpdateHotelComponent,
+    HotelListComponent,
+    AddRoomToHotelComponent,
+    HotelRoomsComponent,
+    //Room components
     CreateRoomComponent,
     RoomListComponent,
-    AddRoomToHotelComponent,
-    ViewRoomComponent,
-    UpdateRoomComponent,
+    
+    
+    
+    
+    
+    
     FormatListPipe
   ],
   imports: [

@@ -9,12 +9,15 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   styleUrls: ['./app.component.css'],
   animations: [
     trigger('menuAnimation', [
+      
       state('closed', style({
         height: '0px',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        opacity: 0
       })),
       state('open', style({
         height: '*',
+        opacity: 1
       })),
       transition('closed <=> open', animate('300ms ease-in-out')),
     ])
