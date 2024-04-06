@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HotelService } from '../../SERVICE/hotel-services/hotel.service';
-import { Room } from '../../INTERFACE/room.interface'; 
+import { RoomOption } from "../../INTERFACE/room.interface"; 
 
 @Component({
   selector: 'app-hotel-rooms',
@@ -10,7 +10,7 @@ import { Room } from '../../INTERFACE/room.interface';
 })
 export class HotelRoomsComponent implements OnInit {
   hotelId: string = "";
-  rooms: Room[] = [];
+  rooms: RoomOption[] = [];
 
   constructor(
     private hotelService: HotelService,
@@ -36,6 +36,17 @@ export class HotelRoomsComponent implements OnInit {
       },
       error: (error) => {
         console.error('There was an error fetching the rooms', error);
+      },
+    });
+  }
+  deleteThisRoom(hotelId: string, roomId: string): void {
+    this.hotelService.deleteRoom(hotelId, roomId).subscribe({
+      next: (data) => {
+        console.log('Room deleted successfully:', data);
+        this.fetchRooms();
+      },
+      error: (error) => {
+        console.error('Error deleting room:', error);
       },
     });
   }

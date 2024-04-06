@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { FormatListPipe } from "../../pipes/format-list.pipe";
-import { Room } from "../../INTERFACE/room.interface";
+import { RoomOption } from "../../INTERFACE/room.interface";
 
 @Injectable({
   providedIn: "root",
@@ -24,7 +24,7 @@ export class RoomService {
     return this.http.post(`${this.baseUrl}/newRoom`, roomData, { headers });
 }
 
-  getAllRooms(): Observable<Room[]> {
+  getAllRooms(): Observable<RoomOption[]> {
     return this.http.get<any>(`${this.baseUrl}/allRooms`).pipe(
       map((rooms) =>
         rooms.map((room: any) => ({

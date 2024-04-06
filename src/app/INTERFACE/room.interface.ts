@@ -1,3 +1,17 @@
+export interface RoomOption {
+  _id?: string;  // Optional MongoDB unique identifier for the room option
+  RoomName: string;
+  SquareFeet: number;
+  RoomMeals: RoomMeals;
+  RoomAmenities: RoomAmenities;
+  RoomImages: string[];
+  NumberOfBeds: number;
+  NumOfEmptyRooms: number;
+  Price: number;
+  NumberOfGuests: number;
+  BedType: BedType;
+}
+
 export interface RoomMeals {
   Breakfast: boolean;
   Dinner: boolean;
@@ -17,22 +31,4 @@ export interface BedType {
   TwinBed: boolean;
   QueenBed: boolean;
   KingBed: boolean;
-}
-
-export interface RoomOption {
-  RoomName: string;
-  SquareFeet: number;
-  RoomMeals: RoomMeals;
-  RoomAmenities: RoomAmenities;
-  RoomImages: string[];
-  NumberOfBeds: number;
-  NumOfEmptyRooms: number;
-  Price: number;
-  NumberOfGuests: number;
-  BedType: BedType;
-}
-
-export interface Room {
-  _id?: string; // MongoDB unique identifier
-  RoomOptions: RoomOption[];
 }

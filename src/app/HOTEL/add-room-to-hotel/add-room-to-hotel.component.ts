@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Room } from "../../INTERFACE/room.interface";
+import { RoomOption } from "../../INTERFACE/room.interface";
 import { HotelService } from "../../SERVICE/hotel-services/hotel.service";
 import { SharedService } from "../../SERVICE/room-update/shared-service.service";
 
@@ -11,34 +11,32 @@ import { SharedService } from "../../SERVICE/room-update/shared-service.service"
 })
 export class AddRoomToHotelComponent implements OnInit {
   hotelId: string = "";
-  room: Room = {
-    RoomOptions: [{
-      RoomName: "",
-      SquareFeet: 0,
-      RoomMeals: {
-        Breakfast: false,
-        Dinner: false,
-        BreakfastAndDinner: false,
-      },
-      RoomAmenities: {
-        Wifi: false,
-        CableTv: false,
-        AirCondition: false,
-        FreeCancellation: false,
-        NonSmoking: false,
-      },
-      RoomImages: [""],
-      NumberOfBeds: 0,
-      NumOfEmptyRooms: 0,
-      Price: 0,
-      NumberOfGuests: 0,
-      BedType: {
-        SingleBed: false,
-        TwinBed: false,
-        QueenBed: false,
-        KingBed: false,
-      },
-    }],
+  room: RoomOption = {
+    RoomName: "",
+    SquareFeet: 0,
+    RoomMeals: {
+      Breakfast: false,
+      Dinner: false,
+      BreakfastAndDinner: false,
+    },
+    RoomAmenities: {
+      Wifi: false,
+      CableTv: false,
+      AirCondition: false,
+      FreeCancellation: false,
+      NonSmoking: false,
+    },
+    RoomImages: [],
+    NumberOfBeds: 0,
+    NumOfEmptyRooms: 0,
+    Price: 0,
+    NumberOfGuests: 0,
+    BedType: {
+      SingleBed: false,
+      TwinBed: false,
+      QueenBed: false,
+      KingBed: false,
+    },
   };
 
   constructor(
@@ -57,40 +55,6 @@ export class AddRoomToHotelComponent implements OnInit {
         console.error("Hotel ID is not specified in the route parameters.");
       }
     });
-  }
-
-  addRoomOption(): void {
-    this.room.RoomOptions.push({
-      RoomName: "",
-      SquareFeet: 0,
-      RoomMeals: {
-        Breakfast: false,
-        Dinner: false,
-        BreakfastAndDinner: false,
-      },
-      RoomAmenities: {
-        Wifi: false,
-        CableTv: false,
-        AirCondition: false,
-        FreeCancellation: false,
-        NonSmoking: false,
-      },
-      RoomImages: [""],
-      NumberOfBeds: 0,
-      NumOfEmptyRooms: 0,
-      Price: 0,
-      NumberOfGuests: 0,
-      BedType: {
-        SingleBed: false,
-        TwinBed: false,
-        QueenBed: false,
-        KingBed: false,
-      },
-    });
-  }
-
-  removeRoomOption(index: number): void {
-    this.room.RoomOptions.splice(index, 1);
   }
 
   addRoom(): void {
@@ -112,14 +76,12 @@ export class AddRoomToHotelComponent implements OnInit {
     });
   }
 
-  addImageField(optionIndex: number): void {
-    this.room.RoomOptions[optionIndex].RoomImages.push("");
+  addImageField(): void {
+    this.room.RoomImages.push("");
   }
 
-  removeImageField(optionIndex: number, imageIndex: number): void {
-    if (this.room.RoomOptions[optionIndex].RoomImages.length > 1) {
-      this.room.RoomOptions[optionIndex].RoomImages.splice(imageIndex, 1);
-    }
+  removeImageField(imageIndex: number): void {
+    this.room.RoomImages.splice(imageIndex, 1);
   }
 
   cancel(): void {
