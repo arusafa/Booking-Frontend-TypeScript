@@ -40,9 +40,11 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem("token");
-    localStorage.removeItem("role"); // Remove role on logout
+    localStorage.removeItem("role");
+    localStorage.removeItem("user");
     this.router.navigate(["/login"]);
   }
+  
 
   getToken(): string | null {
     return localStorage.getItem("token");
@@ -73,5 +75,8 @@ export class AuthService {
   getUserDetails(): any {
     const userDetails = localStorage.getItem("user");
     return userDetails ? JSON.parse(userDetails) : null;
+  }
+  isLoggedIn(): boolean {
+    return !!this.getToken();
   }
 }

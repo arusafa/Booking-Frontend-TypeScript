@@ -21,11 +21,12 @@ export class AdminAuthGuardService implements CanActivate {
     console.log("Is Admin: ", this.authService.isAdmin());
 
     if (this.authService.isAuthenticated() && this.authService.isAdmin()) {
-      return true; // Admin users are allowed
+      return true;
     } else if (this.authService.isAuthenticated()) {
       this.router.navigate(["/dashboard"]); // Non-admin authenticated users are redirected to dashboard
       return false;
     } else {
+      alert("You are not authorized to view this page")
       this.router.navigate(["/login"]); // Unauthenticated users are redirected to login
       return false;
     }

@@ -1,6 +1,18 @@
-<nav class="navbar navbar-expand-lg border-1 border-dark-subtle">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">{{title}}</a>
+<nav class="bg-gray-800 p-2">
+  <div class="container mx-auto flex items-center justify-between">
+    <a class="text-white font-semibold text-lg tracking-wide hover:text-indigo-500 transition-colors duration-300" href="#">{{ title }}</a>
+    <div class="hidden lg:flex items-center space-x-6">
+      <a [routerLink]="['/create-hotel']" class="text-blue-400 hover:text-white transition-colors duration-300">Create-Hotel</a>
+      <a [routerLink]="['/hotel-list']" class="text-red-400 hover:text-white transition-colors duration-300">Hotel-List</a>
+      <a [routerLink]="['/create-room']" class="text-green-400 hover:text-white transition-colors duration-300">Create-Room</a>
+      <a [routerLink]="['/room-list']" class="text-yellow-400 hover:text-white transition-colors duration-300">Room-List</a>
+    </div>
+
+    <!-- Conditionally display user email and Logout button if logged in -->
+    <div *ngIf="isLoggedIn">
+      <h1 class="text-white font-semibold text-lg tracking-wide hover:text-indigo-500 transition-colors duration-300">Welcome -> {{ user.email }}</h1>
+      <button (click)="onLogoutClick()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Logout</button>
+    </div>
   </div>
 </nav>
-<router-outlet></router-outlet> 
+<router-outlet></router-outlet>

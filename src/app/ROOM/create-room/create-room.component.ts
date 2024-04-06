@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { NgForm } from "@angular/forms";
 import { RoomService } from "../../SERVICE/room-services/room-services.service";
 import { Router } from "@angular/router";
 import { Room } from "../../INTERFACE/room.interface";
@@ -61,6 +60,16 @@ export class CreateRoomComponent implements OnInit {
   trackByFn(index: any, item: any) {
     return index;
   }
+  addImageField(optionIndex: number): void {
+    this.room.RoomOptions[optionIndex].RoomImages.push("");
+  }
+
+  removeImageField(optionIndex: number, imageIndex: number): void {
+    this.room.RoomOptions[optionIndex].RoomImages.splice(imageIndex, 1);
+  }
+  cancel(): void {
+    this.router.navigate(["/dashboard"]);
+  }
 
   addRoomOption(): void {
     this.room.RoomOptions.push({
@@ -92,18 +101,10 @@ export class CreateRoomComponent implements OnInit {
     });
   }
 
-  addImageField(optionIndex: number): void {
-    this.room.RoomOptions[optionIndex].RoomImages.push("");
-  }
-
-  removeImageField(optionIndex: number, imageIndex: number): void {
-    this.room.RoomOptions[optionIndex].RoomImages.splice(imageIndex, 1);
-  }
+ 
 
   removeRoomOption(index: number): void {
     this.room.RoomOptions.splice(index, 1);
   }
-  cancel(): void {
-    this.router.navigate(["/dashboard"]);
-  }
+  
 }

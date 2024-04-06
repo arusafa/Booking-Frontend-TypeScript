@@ -24,13 +24,6 @@ export class RoomService {
     return this.http.post(`${this.baseUrl}/newRoom`, roomData, { headers });
 }
 
-
-
-
-
-
-
-
   getAllRooms(): Observable<Room[]> {
     return this.http.get<any>(`${this.baseUrl}/allRooms`).pipe(
       map((rooms) =>
