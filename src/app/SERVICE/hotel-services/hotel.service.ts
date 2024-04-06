@@ -12,6 +12,16 @@ export class HotelService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  createHotel(hotelData: any): Observable<any> {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      throw new Error("Token not available");
+    }
+
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`);
+    return this.http.post(`${this.baseUrl}/newHotel`, hotelData, { headers });
+  }
+
   getAllHotels(): Observable<any> {
     return this.http.get(`${this.baseUrl}/allHotels`);
   }
@@ -19,18 +29,9 @@ export class HotelService {
   getHotelById(hotelId: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/${hotelId}`);
   }
+  
   getRoomsForHotel(hotelId: string, roomId: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/${hotelId}/${roomId}`);
-  }
-
-  createHotel(hotel: any): Observable<any> {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      throw new Error("Token not available");
-    }
-
-    const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`);
-    return this.http.post(`${this.baseUrl}/newHotel`, hotel, { headers });
   }
 
   addRoomToHotel(hotelId: string, room: any): Observable<any> {

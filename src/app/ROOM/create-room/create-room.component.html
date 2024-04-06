@@ -251,23 +251,26 @@
             <hr class="mb-6" />
           </div>
           <!-- Add Room Button -->
-          <div class="inline-flex items-center mr-4">
-            <div class="text-center mr-4">
-              <button
-                type="submit"
-                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              >
-                Create Room
-              </button>
-            </div>
-            <div class="text-center mr-4">
-              <button
-                type="reset"
-                class="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              >
-                Clear Form
-              </button>
-            </div>
+          <div class="text-center mt-4">
+            <button
+              type="submit"
+              class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+            >
+              Add Room
+            </button>
+            <button
+              type="reset"
+              class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+            >
+              Clear Form
+            </button>
+            <button
+              (click)="cancel()"
+              type="button"
+              class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+            >
+              Cancel
+            </button>
           </div>
         </form>
       </div>

@@ -103,4 +103,7 @@ export class CreateRoomComponent implements OnInit {
   removeRoomOption(index: number): void {
     this.room.RoomOptions.splice(index, 1);
   }
+  cancel(): void {
+    this.router.navigate(["/dashboard"]);
+  }
 }

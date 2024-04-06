@@ -1,8 +1,6 @@
 import { Component } from "@angular/core";
 import { HotelService } from "../../SERVICE/hotel-services/hotel.service";
 import { Router } from "@angular/router";
-import { Room } from "../../INTERFACE/room.interface";
-import { Hotel } from "../../INTERFACE/hotel.interface";
 
 @Component({
   selector: "app-create-hotel",
@@ -10,64 +8,84 @@ import { Hotel } from "../../INTERFACE/hotel.interface";
   styleUrls: ["./create-hotel.component.css"],
 })
 export class CreateHotelComponent {
-  hotel: Hotel = {
-    hotelName: "",
-    hotelAddress: {
-      Country: "",
-      City: "",
-      Province: "",
-      PostalCode: "",
-    },
-    hotelRating: 0,
-    hotelAmenities: {
-      Pool: false,
-      Gym: false,
-      AirportShuttle: false,
-      Pets: false,
-    },
-    hotelDescription: {
-      Images: [""],
-      Description: "",
-    },
-    hotelDetails: {
-      AirportDistance: 0,
-      DowntownDistance: 0,
-      SeaDistance: 0,
-    },
-    rooms: [],
+  hotelName: string = "";
+  hotelAddress: any = {
+    Country: "",
+    City: "",
+    Province: "",
+    PostalCode: "",
   };
+  hotelRating: number = 0;
+  hotelAmenities: any = {
+    Pool: "",
+    Gym: "",
+    AirportShuttle: "",
+    Pets: "",
+  };
+  hotelDescription: any = {
+    Images: [],
+    Description: "",
+  };
+  hotelDetails: any = {
+    AirportDistance: "",
+    DowntownDistance: "",
+    SeaDistance: "",
+  };
+  rooms: string[] = [];
 
-  constructor(private hotelService: HotelService, private router: Router) {}
+  constructor(private hotelService: HotelService, private router: Router) {
+    this.hotelDescription.Images.push(""); // Add an empty image URL to the array
+  }
+  addImageField(): void {
+    this.hotelDescription.Images.push("");
+  }
+  removeImageField(index: number): void {
+    this.hotelDescription.Images.splice(index, 1);
+  }
 
   onSubmit(): void {
-    // Implementation of submitting the hotel data
-    this.hotelService.createHotel(this.hotel).subscribe(
+    // Convert amenities to Boolean values
+    const hotelAmenities = {
+      Pool: this.hotelAmenities.Pool === "Yes",
+      Gym: this.hotelAmenities.Gym === "Yes",
+      AirportShuttle: this.hotelAmenities.AirportShuttle === "Yes",
+      Pets: this.hotelAmenities.Pets === "Yes",
+    };
+
+    const hotelData = {
+      HotelName: this.hotelName,
+      HotelAddress: this.hotelAddress,
+      HotelRating: this.hotelRating,
+      HotelAmenities: hotelAmenities,
+      HotelDescription: this.hotelDescription,
+      HotelDetails: this.hotelDetails,
+    };
+
+    this.hotelService.createHotel(hotelData).subscribe(
       (response) => {
         console.log("Hotel created successfully:", response);
         this.router.navigate(["/hotel-list"]);
       },
       (error) => {
         console.error("Error occurred while creating hotel:", error);
+        // Optionally, display an error message to the user
       }
     );
   }
-  getRoom_Id(room: any): string {
-    return room._id;
-  }
-
-  addImageField(): void {
-    this.hotel.hotelDescription.Images.push("");
-  }
-
-  removeImageField(index: number): void {
-    this.hotel.hotelDescription.Images.splice(index, 1);
-  }
-
   cancel(): void {
     this.router.navigate(["/dashboard"]);
   }
 
-  addRoom(room: Room): void {
-    this.hotel.rooms.push(room);
+  // Function to add a room to the hotel
+  addRoom(roomId: string): void {
+    this.rooms.push(roomId);
+  }
+
+  // Function to remove a room from the hotel
+  removeRoom(roomId: string): void {
+    const index = this.rooms.indexOf(roomId);
+    if (index !== -1) {
+      this.rooms.splice(index, 1);
+    }
   }
 }

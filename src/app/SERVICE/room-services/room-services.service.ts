@@ -52,26 +52,11 @@ export class RoomService {
       map((room) => ({
         roomId: room._id,
         ...room,
-        RoomAmenities: this.formatAmenities(room.RoomAmenities),
-        BedType: this.formatBedType(room.BedType),
+        RoomAmenities: this.formatListPipe.transform(room.RoomAmenities),
+            BedType: this.formatListPipe.transform(room.BedType),
+            RoomMeals: this.formatListPipe.transform(room.RoomMeals),
       }))
     );
-  }
-
-  formatAmenities(amenities: any): string {
-    // Convert the amenities object into a string list for display
-    return Object.entries(amenities)
-      .filter(([key, value]) => key !== "_id" && value) // Filter out the '_id' property and false values
-      .map(([key]) => key.replace(/([A-Z])/g, " $1").trim()) // Add space before capital letters for readability
-      .join(", "); // Join the array elements into a string separated by commas
-  }
-
-  formatBedType(bedType: any): string {
-    // Convert the bedType object into a string list for display
-    return Object.entries(bedType)
-      .filter(([key, value]) => key !== "_id" && value) // Filter out the '_id' property and false values
-      .map(([key]) => key.replace(/([A-Z])/g, " $1").trim()) // Add space before capital letters for readability
-      .join(", "); // Join the array elements into a string separated by commas
   }
 
   // More methods as needed for other operations like getHotelById, updateHotel, etc.
