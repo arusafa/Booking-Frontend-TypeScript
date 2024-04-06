@@ -58,7 +58,7 @@ const appRoutes: Routes = [
   },
   // Hotel Room imports
   {
-    path: "add-room/:id",
+    path: "addRoom/:hotelId",
     component: AddRoomToHotelComponent,
     canActivate: [AdminAuthGuardService],
   },
@@ -81,7 +81,7 @@ const appRoutes: Routes = [
     canActivate: [AdminAuthGuardService],
   },
   {
-    path: "view-rooms/:hotelId",
+    path: "getRooms/:hotelId",
     component: HotelRoomsComponent,
     canActivate: [AdminAuthGuardService],
   },

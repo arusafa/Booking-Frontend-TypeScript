@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Router } from "@angular/router";
-import { Hotel } from "../../INTERFACE/hotel.interface";
 
 @Injectable({
   providedIn: "root",
@@ -29,19 +28,25 @@ export class HotelService {
   getHotelById(hotelId: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/${hotelId}`);
   }
-  
-  getRoomsForHotel(hotelId: string, roomId: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/${hotelId}/${roomId}`);
+
+  getRoomsByHotelId(hotelId: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('Token not available');
+    }
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${this.baseUrl}/getRooms/${hotelId}`, { headers });
   }
 
   addRoomToHotel(hotelId: string, room: any): Observable<any> {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     if (!token) {
-      throw new Error("Token not available");
+      throw new Error('Token not available');
     }
 
-    const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`);
-    return this.http.post(`${this.baseUrl}/${hotelId}/addRoom`, room, {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(`${this.baseUrl}/addRoom/${hotelId}`, room, {
       headers,
     });
   }
@@ -52,8 +57,6 @@ export class HotelService {
       throw new Error("Token not available");
     }
     const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`);
-
-    // Ensure the URL includes the actual hotelId rather than the placeholder ':hotelId'
     return this.http.put(`${this.baseUrl}/${hotelId}`, hotelData, { headers });
   }
 
