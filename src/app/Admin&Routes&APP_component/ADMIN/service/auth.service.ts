@@ -44,7 +44,6 @@ export class AuthService {
     localStorage.removeItem("user");
     this.router.navigate(["/login"]);
   }
-  
 
   getToken(): string | null {
     return localStorage.getItem("token");
@@ -54,12 +53,10 @@ export class AuthService {
     return localStorage.getItem("role");
   }
 
-  // New method to set the token
   setToken(token: string): void {
     localStorage.setItem("token", token);
   }
 
-  // New method to set the role
   setRole(role: string): void {
     localStorage.setItem("role", role);
     const storedRole = localStorage.getItem("role");
@@ -71,7 +68,6 @@ export class AuthService {
     return role?.trim().toLowerCase() === "admin";
   }
 
-  // New method to store user details
   getUserDetails(): any {
     const userDetails = localStorage.getItem("user");
     return userDetails ? JSON.parse(userDetails) : null;

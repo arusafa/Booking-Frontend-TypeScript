@@ -8,7 +8,7 @@
       <a [routerLink]="['/room-list']" class="text-yellow-400 hover:text-white transition-colors duration-300">Room-List</a>
     </div>
 
-    <!-- Conditionally display user email and Logout button if logged in -->
+    <!-- display user email and Logout button if logged in -->
     <div *ngIf="isLoggedIn">
       <h1 class="text-white font-semibold text-lg tracking-wide hover:text-indigo-500 transition-colors duration-300">Welcome -> {{ user.email }}</h1>
       <button (click)="onLogoutClick()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Logout</button>
