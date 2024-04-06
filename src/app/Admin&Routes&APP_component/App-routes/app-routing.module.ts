@@ -73,7 +73,7 @@ const routes: Routes = [
     canActivate: [AdminAuthGuardService],
   },
   {
-    path: "getRooms/:hotelId",
+    path: "hotelRooms/:hotelId",
     component: HotelRoomsComponent,
     canActivate: [AdminAuthGuardService],
   },

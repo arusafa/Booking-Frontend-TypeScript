@@ -33,6 +33,6 @@ export interface RoomOption {
 }
 
 export interface Room {
-  // MongoDB unique identifier
+  _id?: string; // MongoDB unique identifier
   RoomOptions: RoomOption[];
 }

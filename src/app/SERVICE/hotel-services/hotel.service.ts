@@ -11,6 +11,25 @@ export class HotelService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  //Get rooms by hotel ID
+  getRoomsByHotelId(hotelId: string): Observable<any> {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      throw new Error("Token not available");
+    }
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`);
+    return this.http.get(`${this.baseUrl}/hotelRooms/${hotelId}`, { headers });
+  }
+
+  // Get all hotels
+  getAllHotels(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/allHotels`);
+  }
+  // Get a hotel by ID
+  getHotelById(hotelId: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/${hotelId}`);
+  }
+  // Create a hotel
   createHotel(hotelData: any): Observable<any> {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -20,37 +39,19 @@ export class HotelService {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`);
     return this.http.post(`${this.baseUrl}/newHotel`, hotelData, { headers });
   }
-
-  getAllHotels(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/allHotels`);
-  }
-
-  getHotelById(hotelId: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/${hotelId}`);
-  }
-
-  getRoomsByHotelId(hotelId: string): Observable<any> {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      throw new Error('Token not available');
-    }
-
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get(`${this.baseUrl}/getRooms/${hotelId}`, { headers });
-  }
-
+  // Add a room to a hotel
   addRoomToHotel(hotelId: string, room: any): Observable<any> {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
-      throw new Error('Token not available');
+      throw new Error("Token not available");
     }
 
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`);
     return this.http.post(`${this.baseUrl}/addRoom/${hotelId}`, room, {
       headers,
     });
   }
-
+  // Update a hotel
   updateHotel(hotelId: string, hotelData: any): Observable<any> {
     const token = localStorage.getItem("token");
     if (!token) {

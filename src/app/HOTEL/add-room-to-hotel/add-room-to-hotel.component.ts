@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Room } from "../../INTERFACE/room.interface";
 import { HotelService } from "../../SERVICE/hotel-services/hotel.service";
-import { SharedService } from "../../SERVICE/room-update/shared.service";
+import { SharedService } from "../../SERVICE/room-update/shared-service.service";
 
 @Component({
   selector: "app-add-room-to-hotel",
