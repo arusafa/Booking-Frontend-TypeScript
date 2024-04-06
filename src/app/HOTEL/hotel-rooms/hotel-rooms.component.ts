@@ -9,7 +9,7 @@ import { Room } from '../../INTERFACE/room.interface';
   styleUrls: ['./hotel-rooms.component.css'],
 })
 export class HotelRoomsComponent implements OnInit {
-  hotelId: string = ""; // Hotel ID
+  hotelId: string = "";
   rooms: Room[] = [];
 
   constructor(
@@ -19,10 +19,11 @@ export class HotelRoomsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      if (params['id']) {
-        this.hotelId = params['id'];
-        console.log("Hotel ID:", this.hotelId); // Log the hotel ID
+      if (params['_id']) {
+        this.hotelId = params['_id'];
+        console.log("Hotel ID:", this.hotelId);
         this.fetchRooms();
+        console.log("Hotel ID:", this.hotelId);
       }
     });
   }
@@ -31,6 +32,7 @@ export class HotelRoomsComponent implements OnInit {
     this.hotelService.getRoomsByHotelId(this.hotelId).subscribe({
       next: (data) => {
         this.rooms = data;
+        console.log('Rooms:', this.rooms);
       },
       error: (error) => {
         console.error('There was an error fetching the rooms', error);

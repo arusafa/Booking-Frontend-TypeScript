@@ -1,8 +1,12 @@
 <div class="container mt-3">
   <h2 class="text-center mb-4">Room List</h2>
+  <div class="bg-gray-100 p-1 text-center font-bold">
+    Hotel ID: {{ hotelId}}
+  </div>
   <ng-container *ngIf="rooms.length; else noRooms">
     <div class="row" *ngFor="let room of rooms; let i = index">
       <div class="col-md-4" *ngFor="let option of room.RoomOptions; let j = index">
+        
         <div class="card mb-4">
           <div class="card-body">
             <h5 class="card-title">{{ option.RoomName }}</h5>

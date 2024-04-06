@@ -18,7 +18,7 @@ export class HotelService {
       throw new Error("Token not available");
     }
     const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`);
-    return this.http.get(`${this.baseUrl}/hotelRooms/${hotelId}`, { headers });
+    return this.http.get(`${this.baseUrl}/hotel-rooms/${hotelId}`, { headers });
   }
 
   // Get all hotels
